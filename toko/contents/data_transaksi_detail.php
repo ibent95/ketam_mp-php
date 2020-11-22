@@ -391,9 +391,9 @@
 								<form class="text-right" <?php if ($action == 'konfirmasi' or $action == 'lihat') : ?> action="?content=data_transaksi_proses&proses=confirm" <?php elseif ($action == 'proses') : ?> action="?content=data_transaksi_proses&proses=process_transaction" <?php elseif ($action == 'konfirmasi_pengembalian') : ?> action="?content=data_transaksi_proses&proses=confirmation_of_return" <?php endif ?> method="POST" enctype="multipart/form-data">
 									<input type="hidden" name="id_transaksi" value="<?php echo $id; ?>">
 									<?php if ($action == 'proses') : ?>
-										<input type="hidden" name="status_check_kurir" value="sudah">
+										<input type="hidden" name="status_check_toko" value="sudah">
 									<?php elseif ($action == 'konfirmasi_pengembalian') : ?>
-										<input type="hidden" name="status_check_kurir" value="selesai">
+										<input type="hidden" name="status_check_toko" value="selesai">
 									<?php endif ?>
 									<div class="form-group row">
 										<div class="col-md-12">

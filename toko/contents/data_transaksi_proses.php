@@ -139,7 +139,8 @@
 				}
 				// Ubah data yang ada di dalam tabel data_transaksi
 				$tglPengembalian = date("Y-m-d H:i:s");
-				mysqli_query($koneksi, "UPDATE `data_transaksi` SET `status_pengembalian` = 'sudah', `toko_check` = '$statusCheckToko', `tgl_pengembalian` = '$tglPengembalian' WHERE `id_transaksi` = '$idTransaksi'") or die($koneksi);
+				echo $sql = "UPDATE `data_transaksi` SET `status_pengembalian` = 'sudah', `toko_check` = '$statusCheckToko', `tgl_pengembalian` = '$tglPengembalian' WHERE `id_transaksi` = '$idTransaksi'";
+				mysqli_query($koneksi, $sql) or die($koneksi);
 			// array_push($messages, array("success", "Transaksi berhasil dikonfirmasi..!"));
 				$_SESSION['message-type'] = "success";
 				$_SESSION['message-content'] = "Data berhasil dikonfirmasi...";

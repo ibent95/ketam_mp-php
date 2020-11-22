@@ -200,7 +200,7 @@
 														<i class="fas fa-check"></i>
 														Konfirmasi Pengembalian
 													</a>
-												<?php elseif ($data['status_transaksi'] == 'proses' and $data['status_pengembalian'] === 'sudah' AND $data['toko_check'] === 'sudah' AND $data['pelanggan_check'] == 'sudah') : ?>
+												<?php elseif ($data['status_transaksi'] == 'proses' and $data['status_pengembalian'] === 'sudah' AND $data['toko_check'] === 'selesai' AND $data['pelanggan_check'] == 'sudah') : ?>
 													<a class="btn btn-success btn-sm" href="?content=data_transaksi_proses&proses=finish&id=<?php echo $data['id_transaksi']; ?>">
 														<i class="fas fa-check"></i>
 														Selesai

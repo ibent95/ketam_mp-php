@@ -375,7 +375,7 @@
 					$sql = "UPDATE `data_transaksi` SET `status_pengembalian` = 'ya' WHERE `id_transaksi` = '$idTransaksi'; ";
 					$action = mysqli_query($koneksi, $sql) or die($koneksi);
 				} else if ($prosesCheck == 'pelanggan_checked') {
-					$sql = "UPDATE `data_transaksi` SET `pelanggan_checked` = 'sudah' WHERE `id_transaksi` = '$idTransaksi'; ";
+					$sql = "UPDATE `data_transaksi` SET `pelanggan_check` = 'sudah' WHERE `id_transaksi` = '$idTransaksi'; ";
 					$action = mysqli_query($koneksi, $sql) or die($koneksi);
 				}
 				if ($action) {
