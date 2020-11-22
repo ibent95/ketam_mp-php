@@ -369,7 +369,7 @@
 				break;
 			case 'set_transaction_checked':
 				$idTransaksi	= $_GET['id_transaksi'];
-				$prosesCheck	= $_POST['proses_check'];
+				$prosesCheck	= $_POST['proses_checked'];
 				$action			= null;
 				if ($prosesCheck == 'pelanggan_return') {
 					$sql = "UPDATE `data_transaksi` SET `status_pengembalian` = 'ya' WHERE `id_transaksi` = '$id'; ";
