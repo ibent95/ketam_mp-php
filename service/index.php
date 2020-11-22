@@ -367,6 +367,29 @@
 					$messages['error'] = mysqli_error($koneksi);
 				}
 				break;
+			case 'set_transaction_checked':
+				$idTransaksi	= $_GET['id_transaksi'];
+				$prosesCheck	= $_POST['proses_check'];
+				$action			= null;
+				if ($prosesCheck == 'pelanggan_return') {
+					$sql = "UPDATE `data_transaksi` SET `status_pengembalian` = 'ya' WHERE `id_transaksi` = '$id'; ";
+					$action = mysqli_query($koneksi, $sql) or die($koneksi);
+				} else if ($prosesCheck == 'pelanggan_checked') {
+					$sql = "UPDATE `data_transaksi` SET `pelanggan_checked` = 'sudah' WHERE `id_transaksi` = '$id'; ";
+					$action = mysqli_query($koneksi, $sql) or die($koneksi);
+				}
+				if ($action) {
+					$messages['success'] = "Sukses";
+					if ($prosesCheck == 'pelanggan_return') {
+						$messages['message'] = "Konfirmasi pengembalian berhasil, silahkan menunggu informasi dari pihak toko.";
+					} else if ($prosesCheck == 'pelanggan_checked') {
+						$messages['message'] = "Konfirmasi selesai berhasil. Terima kasih telah bertransaksi bersama kami.";
+					}
+					
+				} else {
+					$messages['error'] = mysqli_error($koneksi);
+				}
+				break;
 			case 'get_barang':
 				$filter			= (isset($_GET['filter']) AND !empty($_GET['filter'])) ? $_GET['filter'] : 'all' ;
 				$idBarang		= $_GET['id_barang'];
