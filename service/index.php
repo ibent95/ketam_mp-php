@@ -372,10 +372,10 @@
 				$prosesCheck	= $_POST['proses_checked'];
 				$action			= null;
 				if ($prosesCheck == 'pelanggan_return') {
-					$sql = "UPDATE `data_transaksi` SET `status_pengembalian` = 'ya' WHERE `id_transaksi` = '$id'; ";
+					$sql = "UPDATE `data_transaksi` SET `status_pengembalian` = 'ya' WHERE `id_transaksi` = '$idTransaksi'; ";
 					$action = mysqli_query($koneksi, $sql) or die($koneksi);
 				} else if ($prosesCheck == 'pelanggan_checked') {
-					$sql = "UPDATE `data_transaksi` SET `pelanggan_checked` = 'sudah' WHERE `id_transaksi` = '$id'; ";
+					$sql = "UPDATE `data_transaksi` SET `pelanggan_checked` = 'sudah' WHERE `id_transaksi` = '$idTransaksi'; ";
 					$action = mysqli_query($koneksi, $sql) or die($koneksi);
 				}
 				if ($action) {
