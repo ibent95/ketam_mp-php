@@ -69,7 +69,7 @@
 			break;
 		case 'process_transaction' :
 			try {
-				mysqli_query($koneksi, "UPDATE `data_transaksi` SET `toko_check` = '$_POST[status_check_kurir]' WHERE `id_transaksi`	= '$idTransaksi'") or die($koneksi);
+				mysqli_query($koneksi, "UPDATE `data_transaksi` SET `toko_check` = '$statusCheckToko' WHERE `id_transaksi`	= '$idTransaksi'") or die($koneksi);
 				//array_push($messages, array("success", "Transaksi berhasil diproses..!"));
 				$_SESSION['message-type'] = "success";
 				$_SESSION['message-content'] = "Transaksi berhasil diproses..!";
