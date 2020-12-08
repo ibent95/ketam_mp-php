@@ -122,6 +122,11 @@
 				if ($barangAll) {
 					while ($barang = mysqli_fetch_assoc($barangAll)) {
 						$barang['col_class'] = "col-50";
+						$fotoAll = [];
+						foreach (getFotoBarangByIdBarang($barang['id_barang']) as $key => $value) {
+							$fotoAll[$key] = $value;
+						}
+						$barang['foto_all'] = $fotoAll;
 						$messages['barangAll'][] = $barang;
 					}
 				} else {
@@ -133,7 +138,7 @@
 				$idPelanggan		= $_POST['id_pelanggan'] ;
 				$keranjangAll		= mysqli_query($koneksi, "SELECT * FROM `data_keranjang` INNER JOIN `data_barang` ON data_keranjang.id_barang = data_barang.id_barang WHERE data_keranjang.id_pelanggan = '$idPelanggan'");
 				$transaksiAll		= getTransaksiSubJoinByIdPelanggan($idPelanggan);
-				// $result, $idGuru, $idKelas, $semester, $idMapel, $nis, $order
+				//print_r($transaksiAll);
 				if ($keranjangAll OR $transaksiAll) {
 					if (mysqli_num_rows($keranjangAll) > 0) {
 						while ($data = mysqli_fetch_assoc($keranjangAll)) {
@@ -144,7 +149,7 @@
 						$messages['keranjangAll']['message'] = "Maaf, Belum ada Data..!";
 					}
 					if (mysqli_num_rows($transaksiAll) > 0) {
-						while ($konf = mysqli_fetch_assoc($transaksiAll)) {
+						while ($data = mysqli_fetch_assoc($transaksiAll)) {
 							$messages['transaksiAll'][] = $data;
 						}
 						//$messages['message'] = "Sukses";
@@ -308,8 +313,8 @@
 						$successTransaksi['success-transaksi'.$noTransaksi] = ($resultTransaksi) ? true : false ;
 						$idTransaksi = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT `id_transaksi` FROM `data_transaksi` WHERE `no_transaksi` = '$noTransaksi';"))['id_transaksi'];
 						// Data Transaksi Tambahan
-						$sql = ($diantarkan === TRUE) ? "INSERT INTO `data_transaksi_tambah` (`id_transaksi`, `no_transaksi`, `info_transaksi`, `harga`, `keterangan`) VALUES ('$idTransaksi', '$noTransaksi', 'ongkir', '200000', 'Biaya pengantaran untuk transaksi dengan No. $noTransaksi.'); " : "" ;
-						$resultTransaksiTambahan = mysqli_query($koneksi, $sql);
+						$sql = ($diantarkan === TRUE) ? "INSERT INTO `data_transaksi_tambah` (`id_transaksi`, `no_transaksi`, `info_transaksi`, `harga`, `keterangan`) VALUES ('$idTransaksi', '$noTransaksi', 'ongkir', '20000', 'Biaya pengantaran untuk transaksi dengan No. $noTransaksi.'); " : NULL ;
+						$resultTransaksiTambahan = ($sql) ? mysqli_query($koneksi, $sql) : NULL ;
 						$messages['transaksiTambahan'][] = ($resultTransaksiTambahan) ? "success-$noTransaksi" : mysqli_error($koneksi) ;
 						$successTransaksiTambahan['success-transaksi-tambahan-'.$noTransaksi] = ($resultTransaksiTambahan) ? true : false ;
 						foreach ($transactionsData as $key => $value) {
@@ -390,6 +395,18 @@
 					$messages['error'] = mysqli_error($koneksi);
 				}
 				break;
+			case 'set_transaction_finish':
+				$idTransaksi	= $_GET['id_transaksi'];
+				$action			= null;
+				$sql = "UPDATE `data_transaksi` SET `status_transaksi` = 'selesai' WHERE `id_transaksi` = '$idTransaksi'; ";
+				$action = mysqli_query($koneksi, $sql) or die($koneksi);
+				if ($action) {
+					$messages['success'] = "Sukses";
+					$messages['message'] = "Konfirmasi selesai berhasil. Terima kasih telah bertransaksi bersama kami.";
+				} else {
+					$messages['error'] = mysqli_error($koneksi);
+				}
+				break;
 			case 'get_barang':
 				$filter			= (isset($_GET['filter']) AND !empty($_GET['filter'])) ? $_GET['filter'] : 'all' ;
 				$idBarang		= $_GET['id_barang'];
@@ -438,46 +455,19 @@
 					$messages['error'] = mysqli_error($koneksi);
 				}
 				break;
-			case 'get_nilai':
-				$nis        = $_POST['nis'];
-				$idKelas    = $_POST['idKelas'];
-				$idMapel    = $_POST['idMapel'];
-				$nilaiSemester1All = getNilaiJoinAll("nilai", "", $idKelas, "semester_1", $idMapel, $nis, "ASC");
-				$nilaiSemester2All = getNilaiJoinAll("nilai", "", $idKelas, "semester_2", $idMapel, $nis, "ASC");
-				// $result, $idGuru, $idKelas, $semester, $idMapel, $nis, $order
-				if ($nilaiSemester1All AND $nilaiSemester2All) {
-					if ((mysqli_num_rows($nilaiSemester1All) > 0) OR (mysqli_num_rows($nilaiSemester2All) > 0)) {
-						// $messages['siswa'] = mysqli_fetch_assoc($siswa);
-						// $messages['message'] = "Data Tugas dan Nilai ditemukan..!";
-						$infoMapel = mysqli_fetch_assoc(mysqli_query($koneksi, "
-							SELECT
-								data_mata_pelajaran.id AS `id_mapel`,
-								data_mata_pelajaran.nama_pelajaran AS `nama_mapel`,
-								data_mata_pelajaran.kkm AS `kkm`,
-								data_guru.nip AS `nip_guru`,
-								data_guru.nama_lengkap AS `nama_guru`
-							FROM `data_mata_pelajaran`
-							LEFT JOIN `data_guru_mata_pelajaran`
-							ON data_mata_pelajaran.id = data_guru_mata_pelajaran.id_mata_pelajaran
-							INNER JOIN `data_guru`
-							ON data_guru_mata_pelajaran.nip_guru = data_guru.nip
-							WHERE data_mata_pelajaran.id = '$idMapel'
-							AND data_guru_mata_pelajaran.id_kelas = '$idKelas'
-						"));
-						$messages['infoMapel'] = $infoMapel;
-						while ($nilai = mysqli_fetch_assoc($nilaiSemester1All)) {
-							$nilai['status_nilai'] = ($nilai['nilai'] >= $infoMapel['kkm']) ? 'Lulus' : 'Tidak Lulus' ;
-							$messages['nilaiSemester1All'][]    = $nilai;
-						}
-						while ($nilai = mysqli_fetch_assoc($nilaiSemester2All)) {
-							$nilai['status_nilai'] = ($nilai['nilai'] >= $infoMapel['kkm']) ? 'Lulus' : 'Tidak Lulus';
-							$messages['nilaiSemester2All'][]    = $nilai;
-						}
-					} else {
-						$messages['error'] = "Maaf, Data Tugas dan Nilai tidak ada..!";
-					}
+			case 'add_ratings':
+				$idPelanggan	= $_GET['id_pelanggan'];
+				$idTransaksi	= $_GET['id_transaksi'];
+				$rating			= $_POST['rating'];
+				$ulasan			= $_POST['ulasan'];
+				$sql = "UPDATE `data_transaksi` SET `rating` = '$rating', `ulasan` = '$ulasan' WHERE `id_pelanggan` = '$idPelanggan' AND `id_transaksi` = '$idTransaksi'";
+				$action = mysqli_query($koneksi, $sql);
+				if ($action) {
+					$messages['success'] = "Terima kasih telah bertransaksi dilayanan kami..!";
+					$messages['sql'] = $sql;
 				} else {
-					$messages['error'] = mysqli_error($koneksi);
+					$messages['error'] = "Maaf, data transaksi tidak ada..!";
+					$messages['sql'] = $sql;
 				}
 				break;
 			case 'upload_file':

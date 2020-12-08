@@ -164,7 +164,7 @@
 		return $data;
 	}
 
-	function getTransaksiSubJoinByIdPelanggan($idPelanggan, $sub = 'pending') {
+	function getTransaksiSubJoinByIdPelanggan($idPelanggan, $sub = 'tunggu') {
 		global $koneksi;
 		$sql = "SELECT * FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelanggan ";
 		// if ($sub == 'proses' || $sub == 'selesai') {
@@ -173,7 +173,7 @@
 		// 		ON data_transaksi.id_teknisi = data_teknisi.id 
 		// 	";
 		// }
-		$sql .= "WHERE data_transaksi.id_pelanggan = '$idPelanggan' AND data_transaksi.status_Transaksi = '$sub' ORDER BY data_transaksi.id_transaksi DESC ";
+		$sql .= "WHERE data_transaksi.id_pelanggan = '$idPelanggan' AND data_transaksi.status_transaksi = '$sub' ORDER BY data_transaksi.id_transaksi DESC ";
 		$data = mysqli_query($koneksi, $sql) or die($koneksi);
 		return $data;
 	}
@@ -295,7 +295,7 @@
 
 	function searchTransaksiByKeyWord($keyWord, $status = '') {
 		global $koneksi;
-		$sql = "SELECT data_transaksi.id_transaksi, data_transaksi.tanggal, data_transaksi.id_pelanggan, data_transaksi.nama_pelanggan, data_pelanggan.alamat, data_transaksi.tanggal_pengantaran, data_transaksi.status_Transaksi FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelanggan WHERE data_transaksi.status_transaksi = '$status' AND ((data_transaksi.tanggal LIKE '%$keyWord%' OR data_transaksi.tanggal_pengantaran LIKE '%$keyWord%') OR (data_pelanggan.nama_lengkap LIKE '%$keyWord%' OR data_pelanggan.username LIKE '%$keyWord%' OR data_pelanggan.alamat LIKE '%$keyWord%') OR (data_transaksi.total_harga LIKE '%$keyWord%' ))";
+		$sql = "SELECT data_transaksi.id_transaksi, data_transaksi.tanggal, data_transaksi.id_pelanggan, data_transaksi.nama_pelanggan, data_pelanggan.alamat, data_transaksi.tanggal_pengantaran, data_transaksi.status_transaksi FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelanggan WHERE data_transaksi.status_transaksi = '$status' AND ((data_transaksi.tanggal LIKE '%$keyWord%' OR data_transaksi.tanggal_pengantaran LIKE '%$keyWord%') OR (data_pelanggan.nama_lengkap LIKE '%$keyWord%' OR data_pelanggan.username LIKE '%$keyWord%' OR data_pelanggan.alamat LIKE '%$keyWord%') OR (data_transaksi.total_harga LIKE '%$keyWord%' ))";
 
 		$sql .= ($keyWord == '' | $keyWord == NULL | empty($keyWord)) ? "ORDER BY data_transaksi.id DESC" : "" ;
 		$data = mysqli_query($koneksi, $sql) or die('Error, ' . mysqli_error($koneksi));
@@ -306,9 +306,9 @@
 		global $koneksi;
 		$sql = "";
 		if ($status == 'tunggu' | $status == 'pending' | $status == 'batal' | $status == 'tolak') { 
-			$sql = "SELECT data_transaksi.id_transaksi, data_transaksi.tanggal_pesan, data_transaksi.id_pelanggan, data_pelanggan.nama, data_pelanggan.alamat, data_transaksi.id_kategori, data_transaksi.tanggal_kerja, data_transaksi.keluhan, data_transaksi.toko_check, data_transaksi.status_transaksi FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelangganINNER JOIN `data_layanan_kategori` ON data_transaksi.id_kategori = data_layanan_kategori.id WHERE data_transaksi.status_Transaksi = '$status' AND ((data_transaksi.tanggal_pesan LIKE '$keyWord%' OR data_transaksi.tanggal_kerja LIKE '$keyWord%' OR data_transaksi.keluhan LIKE '%$keyWord%') OR (data_pelanggan.nama LIKE '$keyWord%' OR data_pelanggan.username LIKE '$keyWord%' OR data_pelanggan.alamat LIKE '$keyWord%') OR (data_layanan_kategori.nama_kategori_layanan LIKE '$keyWord%'))";
+			$sql = "SELECT data_transaksi.id_transaksi, data_transaksi.tanggal_pesan, data_transaksi.id_pelanggan, data_pelanggan.nama, data_pelanggan.alamat, data_transaksi.id_kategori, data_transaksi.tanggal_kerja, data_transaksi.keluhan, data_transaksi.toko_check, data_transaksi.status_transaksi FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelangganINNER JOIN `data_layanan_kategori` ON data_transaksi.id_kategori = data_layanan_kategori.id WHERE data_transaksi.status_transaksi = '$status' AND ((data_transaksi.tanggal_pesan LIKE '$keyWord%' OR data_transaksi.tanggal_kerja LIKE '$keyWord%' OR data_transaksi.keluhan LIKE '%$keyWord%') OR (data_pelanggan.nama LIKE '$keyWord%' OR data_pelanggan.username LIKE '$keyWord%' OR data_pelanggan.alamat LIKE '$keyWord%') OR (data_layanan_kategori.nama_kategori_layanan LIKE '$keyWord%'))";
 		} else {
-			$sql = "SELECT data_transaksi.id_transaksi, data_transaksi.tanggal_pesan, data_transaksi.id_pelanggan, data_pelanggan.nama, data_pelanggan.alamat, data_transaksi.id_kategori, data_transaksi.tanggal_kerja, data_transaksi.keluhan, data_transaksi.id_teknisi, data_toko.nama, data_toko.alamat, data_transaksi.teknisi_check, data_transaksi.status_Transaksi FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelangganINNER JOIN `data_layanan_kategori` ON data_transaksi.id_kategori = data_layanan_kategori.id_kategori INNER JOIN `data_toko` ON data_transaksi.id_toko = data_toko.idWHERE data_transaksi.id_teknisi = '$idToko' AND data_transaksi.status_Transaksi = '$status' AND ((data_transaksi.tanggal_pesan LIKE '$keyWord%' OR data_transaksi.tanggal_kerja LIKE '$keyWord%' OR data_transaksi.keluhan LIKE '%$keyWord%') OR (data_pelanggan.nama_lengkap LIKE '$keyWord%' OR data_pelanggan.username LIKE '$keyWord%' OR data_pelanggan.alamat LIKE '$keyWord%') OR (data_toko.nama_lengkap LIKE '$keyWord%' OR data_toko.username LIKE '$keyWord%' OR data_teknisi.alamat LIKE '$keyWord%') OR (data_layanan_kategori.nama_kategori_layanan LIKE '$keyWord%'))";
+			$sql = "SELECT data_transaksi.id_transaksi, data_transaksi.tanggal_pesan, data_transaksi.id_pelanggan, data_pelanggan.nama, data_pelanggan.alamat, data_transaksi.id_kategori, data_transaksi.tanggal_kerja, data_transaksi.keluhan, data_transaksi.id_teknisi, data_toko.nama, data_toko.alamat, data_transaksi.teknisi_check, data_transaksi.status_transaksi FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelangganINNER JOIN `data_layanan_kategori` ON data_transaksi.id_kategori = data_layanan_kategori.id_kategori INNER JOIN `data_toko` ON data_transaksi.id_toko = data_toko.idWHERE data_transaksi.id_teknisi = '$idToko' AND data_transaksi.status_transaksi = '$status' AND ((data_transaksi.tanggal_pesan LIKE '$keyWord%' OR data_transaksi.tanggal_kerja LIKE '$keyWord%' OR data_transaksi.keluhan LIKE '%$keyWord%') OR (data_pelanggan.nama_lengkap LIKE '$keyWord%' OR data_pelanggan.username LIKE '$keyWord%' OR data_pelanggan.alamat LIKE '$keyWord%') OR (data_toko.nama_lengkap LIKE '$keyWord%' OR data_toko.username LIKE '$keyWord%' OR data_teknisi.alamat LIKE '$keyWord%') OR (data_layanan_kategori.nama_kategori_layanan LIKE '$keyWord%'))";
 		}
 		$sql .= ($keyWord == '' | $keyWord == NULL | empty($keyWord)) ? "ORDER BY data_transaksi.id DESC" : "" ;
 		$data = mysqli_query($koneksi, $sql) or die('Error, ' . mysqli_error($koneksi));
