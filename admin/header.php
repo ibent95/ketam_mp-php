@@ -217,16 +217,16 @@
 					</ul>
 				</li>
 
-				<li class="nav-label">Data Konfigurasi</li>
+				<!--<li class="nav-label">Data Konfigurasi</li>
 
 				<li>
-					<a aria-expanded="false" href="?content=data_konfigurasi_umum"> <!-- class="has-arrow" -->
-						<i class="fas fa-cog"></i>
+					<a aria-expanded="false" href="?content=data_konfigurasi_umum"> --> <!-- class="has-arrow" -->
+						<!-- <i class="fas fa-cog"></i>
 						<span class="hide-menu">
 							Umum
 						</span>
 					</a>
-				</li>
+				</li>-->
 
 				<!-- <li>
 					<a class="has-arrow" aria-expanded="false" href="#">

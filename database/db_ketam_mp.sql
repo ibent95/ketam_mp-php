@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 22, 2020 at 08:18 AM
+-- Generation Time: Dec 16, 2020 at 01:17 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -178,7 +178,15 @@ CREATE TABLE IF NOT EXISTS `data_keranjang` (
   `tgl_masuk` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `total_harga` int(11) NOT NULL,
   PRIMARY KEY (`id_keranjang`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_keranjang`
+--
+
+INSERT INTO `data_keranjang` (`id_keranjang`, `id_pelanggan`, `id_barang`, `jumlah_barang`, `tgl_sewa_awal`, `tgl_sewa_akhir`, `jumlah_hari`, `tgl_masuk`, `total_harga`) VALUES
+(20, 1, 5, 1, '2020-10-25', '2020-10-30', 5, '2020-12-07 23:18:17', 50000),
+(21, 1, 5, 1, '2020-10-25', '2020-10-30', 5, '2020-12-15 21:00:13', 50000);
 
 -- --------------------------------------------------------
 
@@ -350,17 +358,25 @@ CREATE TABLE IF NOT EXISTS `data_transaksi` (
   `tgl_pengembalian` date DEFAULT NULL,
   `toko_check` enum('belum','sudah','selesai','tolak') NOT NULL DEFAULT 'belum',
   `pelanggan_check` enum('belum','sudah') NOT NULL DEFAULT 'belum',
+  `rating` int(11) DEFAULT NULL,
+  `ulasan` text,
   PRIMARY KEY (`id_transaksi`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_transaksi`
 --
 
-INSERT INTO `data_transaksi` (`id_transaksi`, `no_transaksi`, `tgl_transaksi`, `id_pelanggan`, `no_telp`, `keterangan`, `diantarkan`, `tgl_pengantaran`, `alamat_pengantaran`, `longlat`, `id_toko`, `status_transaksi`, `tgl_awal_transaksi`, `tgl_akhir_transaksi`, `jumlah_hari`, `status_pengembalian`, `tgl_pengembalian`, `toko_check`, `pelanggan_check`) VALUES
-(1, 'TR-20201102174547', '2020-11-02', 1, '081xxx', 'cdscsd', 'tidak', '2020-11-02', 'cvdsc', '-5.150126945569225,119.4369892013626', 1, 'tunggu', '2020-10-25', '2020-10-30', 5, 'belum', NULL, 'belum', 'belum'),
-(15, 'TR--20201102760185532', '2020-11-02', 1, '081xxx', 'vfdsf', 'tidak', '2020-11-02', 'vds', '-5.154067743749607,119.43668350832705', 3, 'tunggu', '2020-10-25', '2020-10-30', 5, 'belum', NULL, 'belum', 'belum'),
-(16, 'TR--20201117401194117', '2020-11-17', 1, '081xxx', 'vfldvd', 'tidak', '2020-11-18', 'sd', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-11-22', 'selesai', 'sudah');
+INSERT INTO `data_transaksi` (`id_transaksi`, `no_transaksi`, `tgl_transaksi`, `id_pelanggan`, `no_telp`, `keterangan`, `diantarkan`, `tgl_pengantaran`, `alamat_pengantaran`, `longlat`, `id_toko`, `status_transaksi`, `tgl_awal_transaksi`, `tgl_akhir_transaksi`, `jumlah_hari`, `status_pengembalian`, `tgl_pengembalian`, `toko_check`, `pelanggan_check`, `rating`, `ulasan`) VALUES
+(16, 'TR--20201117401194117', '2020-11-17', 1, '081xxx', 'vfldvd', 'tidak', '2020-11-18', 'sd', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-11-22', 'selesai', 'sudah', NULL, NULL),
+(17, 'TR-20201201982221846', '2020-12-01', 1, '081xxx', '', 'tidak', '2020-12-02', 'cdsc', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
+(18, 'TR-20201202417004921', '2020-12-02', 1, '081xxx', '', 'tidak', '2020-12-01', 's', '-5.150788706800275,119.43978224141526', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
+(19, 'TR-20201202103011553', '2020-12-02', 1, '081xxx', '', 'tidak', '2020-12-03', 'cds', '-5.146190491462918,119.44175389137163', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
+(20, 'TR-20201202817224421', '2020-12-02', 1, '081xxx', 'dcscds', 'tidak', '2020-12-24', 'dc', '-5.15364286974775,119.438390784598', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 5, 'fesewf'),
+(21, 'TR-20201202416233006', '2020-12-02', 1, '081xxx', 'ssc sc sccsc scs', 'tidak', '2020-12-02', 'cs', '-5.155330519260542,119.4404498036828', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 3, 'KKK'),
+(22, 'TR-20201202825233557', '2020-12-02', 1, '081xxx', 'scs', 'tidak', '2020-12-18', 'cs', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
+(23, 'TR-20201202016233748', '2020-12-02', 1, '081xxx', '', 'tidak', '2020-12-26', 'scs', '-5.150852836691099,119.43675671718003', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 5, 'cds'),
+(24, 'TR-20201207986223932', '2020-12-07', 1, '081xxx', 'dscs', 'tidak', '2020-12-08', 'Pajai', '-5.153474244602384,119.43696097943146', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 5, 'Coba lagi');
 
 -- --------------------------------------------------------
 
@@ -377,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `data_transaksi_detail` (
   `harga_sewa` int(11) NOT NULL,
   `jumlah_barang_sewa` int(11) NOT NULL,
   PRIMARY KEY (`id_transaksi_detail`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_transaksi_detail`
@@ -399,7 +415,15 @@ INSERT INTO `data_transaksi_detail` (`id_transaksi_detail`, `id_transaksi`, `no_
 (13, 13, 'TR--20201102984184050', 4, 100000, 1),
 (14, 14, 'TR--20201102947185532', 3, 25000, 1),
 (15, 15, 'TR--20201102760185532', 4, 100000, 1),
-(16, 16, 'TR--20201117401194117', 5, 10000, 2);
+(16, 16, 'TR--20201117401194117', 5, 10000, 2),
+(17, 17, 'TR-20201201982221846', 5, 10000, 1),
+(18, 18, 'TR-20201202417004921', 5, 10000, 1),
+(19, 19, 'TR-20201202103011553', 5, 10000, 1),
+(20, 20, 'TR-20201202817224421', 5, 10000, 2),
+(21, 21, 'TR-20201202416233006', 5, 10000, 1),
+(22, 22, 'TR-20201202825233557', 5, 10000, 1),
+(23, 23, 'TR-20201202016233748', 5, 10000, 1),
+(24, 24, 'TR-20201207986223932', 5, 10000, 2);
 
 -- --------------------------------------------------------
 
@@ -416,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `data_transaksi_tambah` (
   `harga` int(11) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   PRIMARY KEY (`id_transaksi_tambah`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_transaksi_tambah`
@@ -438,7 +462,15 @@ INSERT INTO `data_transaksi_tambah` (`id_transaksi_tambah`, `id_transaksi`, `no_
 (13, 13, 'TR--20201102984184050', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR--20201102984184050.'),
 (14, 14, 'TR--20201102947185532', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR--20201102947185532.'),
 (15, 15, 'TR--20201102760185532', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR--20201102760185532.'),
-(16, 16, 'TR--20201117401194117', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR--20201117401194117.');
+(16, 16, 'TR--20201117401194117', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR--20201117401194117.'),
+(17, 17, 'TR-20201201982221846', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201201982221846.'),
+(18, 18, 'TR-20201202417004921', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202417004921.'),
+(19, 19, 'TR-20201202103011553', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202103011553.'),
+(20, 20, 'TR-20201202817224421', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202817224421.'),
+(21, 21, 'TR-20201202416233006', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202416233006.'),
+(22, 22, 'TR-20201202825233557', 'ongkir', 20000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202825233557.'),
+(23, 23, 'TR-20201202016233748', 'ongkir', 20000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202016233748.'),
+(24, 24, 'TR-20201207986223932', 'ongkir', 20000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201207986223932.');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

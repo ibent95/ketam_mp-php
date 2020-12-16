@@ -379,18 +379,18 @@
 									<div class="col-md-5">
 										<select class="form-control input-rounded input-focus" name="status_transaksi" id="status_transaksi">
 											<option value="">-- Silahakan Pilih Status --</option>
-											<option value="tunggu" <?php if (($action == 'persetujuan' and $transaksi['status_transaksi'] == 'tunggu')) : ?> selected <?php endif ?>>
+											<!--<option value="tunggu" <?php //if (($action == 'persetujuan' and $transaksi['status_transaksi'] == 'tunggu')) : ?> selected <?php// endif ?>>
 												Tunggu
-											</option>
+											</option>-->
 											<option value="proses" <?php if (($action == 'persetujuan' and $transaksi['status_transaksi'] == 'proses') or ($transaksi['diantarkan'] == "ya")) : ?> selected <?php endif ?>>
 												Proses
 											</option>
 											<option value="batal" <?php if (($action == 'persetujuan' and $transaksi['status_transaksi'] == 'batal')) : ?> selected <?php endif ?>>
 												Batal
 											</option>
-											<option value="selesai" <?php if (($action == 'persetujuan' and $transaksi['status_transaksi'] == 'selesai') or ($transaksi['diantarkan'] == "tidak")) : ?> selected <?php endif ?>>
+											<!--<option value="selesai" <?php //if (($action == 'persetujuan' and $transaksi['status_transaksi'] == 'selesai') or ($transaksi['diantarkan'] == "tidak")) : ?> selected <?php //endif ?>>
 												Selesai
-											</option>
+											</option>-->
 										</select>
 									</div>
 								</div>
@@ -400,7 +400,7 @@
 								<div class="form-group pull-left">
 									<div class="col-md-12">
 										<input type="submit" class="btn btn-primary" name="simpan" />
-										<input type="reset" class="btn btn-danger" />
+										<!--<input type="reset" class="btn btn-danger" />-->
 									</div>
 								</div>
 							<?php endif ?>

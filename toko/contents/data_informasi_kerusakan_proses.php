@@ -16,7 +16,7 @@
 	switch ($proses) {
 		case 'add':
 			try {
-				mysqli_query ($koneksi, "INSERT INTO `data_informasi_tambahan`(`keterangan`, `harga`) VALUES ('$keterangan', '$harga')") or die ($koneksi);
+				mysqli_query ($koneksi, "INSERT INTO `data_informasi_tambahan` (`id_toko`, `keterangan`, `harga`) VALUES ('$_SESSION[id]', '$keterangan', '$harga')") or die ($koneksi);
 				array_push($messages, array("success", "Data berhasil ditambahkan..!"));
 			} catch (Exception $e) {
 				array_push($messages, array("danger", "Data gagal ditambahkan..!"));

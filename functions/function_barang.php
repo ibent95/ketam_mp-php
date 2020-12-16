@@ -1,5 +1,26 @@
 <?php
 
+	// InformasiKerusakan
+	function getInformasiKerusakanAll($order = 'DESC') {
+		global $koneksi;
+		$data = mysqli_query($koneksi, "SELECT * FROM `data_informasi_tambahan` ORDER BY `id_informasi_tambahan` $order") or die($koneksi);
+		return $data;
+	}
+
+	function getInformasiKerusakanLimitAll($page, $recordCount = 12) {
+		global $koneksi;
+		$limit = ($page * $recordCount) - $recordCount;
+		$offset= $recordCount;
+		$data = mysqli_query($koneksi, "SELECT * FROM `data_informasi_tambahan` ORDER BY `id_informasi_tambahan` DESC LIMIT $limit, $offset") or die($koneksi);
+		return $data;
+	}
+
+	function getInformasiKerusakanById($id) {
+		global $koneksi;
+		$data = mysqli_query($koneksi, "SELECT * FROM `data_informasi_tambahan` WHERE `id_informasi_tambahan` = '$id'") or die($koneksi);
+		return $data;
+	}
+
 	// Kategori
 	function getKategoriBarangAll($order = 'DESC') {
 		global $koneksi;
