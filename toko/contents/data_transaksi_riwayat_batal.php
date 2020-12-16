@@ -1,21 +1,21 @@
 <?php
-	if (isset($_GET['page'])) {
-		$page = antiInjection($_GET['page']);
-	} else {
-		$page = 1;
-	}
+if (isset($_GET['page'])) {
+	$page = antiInjection($_GET['page']);
+} else {
+	$page = 1;
+}
 
-	if (isset($_GET['record_count']) && !empty($_GET['record_count'])) {
-		class_static_value::$record_count = $_GET['record_count'];
-	}
+if (isset($_GET['record_count']) && !empty($_GET['record_count'])) {
+	class_static_value::$record_count = $_GET['record_count'];
+}
 
-	$transaksiAll = getTransaksiSubJoinLimitAll($page, $_SESSION['record-count'], 'batal');
+$transaksiAll = getTransaksiSubJoinLimitAll($page, $_SESSION['record-count'], 'batal');
 
-	$pagination = new Zebra_Pagination();
-	$pagination->records(mysqli_num_rows(getTransaksiSubJoinAll('batal')));
-	$pagination->records_per_page($_SESSION['record-count']);
+$pagination = new Zebra_Pagination();
+$pagination->records(mysqli_num_rows(getTransaksiSubJoinAll('batal')));
+$pagination->records_per_page($_SESSION['record-count']);
 
-	$inc = 1;
+$inc = 1;
 ?>
 <!-- Bread crumb -->
 <div class="row page-titles">
@@ -164,21 +164,27 @@
 									<th>Diantarkan</th>
 									<th>Total Harga</th>
 									<th>Status Transaksi</th>
+									<th>Rating</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody id="data_list">
 								<?php if (mysqli_num_rows($transaksiAll) <= 0) : ?>
-									<tr> <td colspan="7"> <p class="text-center">Tidak ada data..!</p> </td> </tr>
+									<tr>
+										<td colspan="7">
+											<p class="text-center">Tidak ada data..!</p>
+										</td>
+									</tr>
 								<?php else : ?>
 									<?php while ($data = mysqli_fetch_array($transaksiAll, MYSQLI_BOTH)) : ?>
 										<tr>
 											<td><?= $inc ?></td>
-											<td><?= $data['tanggal_transaksi'] ?></td>
+											<td><?= $data['tgl_transaksi'] ?></td>
 											<td><?= $data['nama_pelanggan'] ?></td>
 											<td><?= setBadges($data['diantarkan']) ?></td>
 											<td class="text-right"><?= format(getTotalHargaTransaksi($data['id_transaksi']), "currency") ?></td>
 											<td><?= setBadges($data['status_transaksi']) ?></td>
+											<td><?= showRating($data['rating'], 11) ?></td>
 											<td>
 												<a class="btn btn-dark btn-sm" href="?content=data_transaksi_persetujuan_form&action=lihat&id=<?= $data['id_transaksi'] ?>">
 													Rincian
