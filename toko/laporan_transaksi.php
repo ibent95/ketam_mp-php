@@ -7,9 +7,11 @@
 	$id_kategori    = (!empty($_POST['id_kategori'])) ? $_POST['id_kategori'] : "" ;
 	$id_barang      = (!empty($_POST['id_barang'])) ? $_POST['id_barang'] : "" ;
 
-	$sql = "SELECT * FROM `data_transaksi` LEFT JOIN `data_transaksi_detail` ON data_transaksi.id_transaksi = data_transaksi_detail.id_transaksi LEFT JOIN `data_barang` ON data_transaksi_detail.id_barang = data_barang.id_barang LEFT JOIN `data_kategori` ON data_barang.id_kategori = data_kategori.id_kategori LEFT JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelanggan WHERE ((data_transaksi.tanggal_transaksi >= '$tanggal_awal 00:00:00') AND (data_transaksi.tanggal_transaksi <= '$tanggal_akhir 23:59:00')) AND (data_barang.id_kategori LIKE '%$id_kategori') AND (data_transaksi_detail.id_barang LIKE '%$id_barang') ORDER BY data_transaksi.id_transaksi DESC";
+	$sql = "SELECT * FROM `data_transaksi` LEFT JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelanggan WHERE ((data_transaksi.tgl_transaksi >= '$tanggal_awal 00:00:00') AND (data_transaksi.tgl_transaksi <= '$tanggal_akhir 23:59:00')) ORDER BY data_transaksi.id_transaksi DESC";
 
 	$transaksiAll = mysqli_query($koneksi, $sql) or die($koneksi);
+
+	$jumlahHarga = 0;
 
 	$i = 1;
 
@@ -19,7 +21,7 @@
 	// instantiate and use the dompdf class
 	$dompdf = new Dompdf();
 
-	ob_start(); 
+	ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +37,20 @@
 	<body>
 		<p class="text-dark">
 			<h2 class="text-center">Laporan Transaksi Tanggal <?php echo format(date('Y-m-d'), 'date'); ?></h2>
+			<?php if ($tanggal_awal == "1978-01-01" AND $tanggal_akhir == date("Y-m-d")) : ?>
+				<table> <tbody>
+						<tr> <td>Dari Keseluruhan Data</td> </tr>
+				</tbody> </table>
+			<?php elseif ($tanggal_awal === "1978-01-01" AND $tanggal_akhir !== date("Y-m-d")) : ?>
+				<table> <tbody>
+					<tr> <td>Sampai tanggal</td> <td>:</td> <td><?= $tanggal_akhir ?></td> </tr>
+				</tbody> </table>
+			<?php else : ?>
+				<table> <tbody>
+					<tr> <td>Dari tanggal</td> <td>:</td> <td><?= $tanggal_awal ?></td> </tr>
+					<tr> <td>Sampai tanggal</td> <td>:</td> <td><?= $tanggal_akhir ?></td> </tr>
+				</tbody> </table>
+			<?php endif ?>
 		</p>
 		<table class="table table-bordered table-striped table-hover">
 			<thead>
@@ -50,14 +66,21 @@
 			</thead>
 			<tbody>
 				<?php while ($transaksi = mysqli_fetch_array($transaksiAll, MYSQLI_BOTH)) : ?>
+					<?php
+						$sql = "SELECT * FROM `data_transaksi_detail` LEFT JOIN `data_barang` ON data_transaksi_detail.id_barang = data_barang.id_barang LEFT JOIN `data_kategori` ON data_barang.id_kategori = data_kategori.id_kategori WHERE (data_transaksi_detail.id_transaksi = '$transaksi[id_transaksi]') AND (data_barang.id_kategori LIKE '%$id_kategori') AND (data_transaksi_detail.id_barang LIKE '%$id_barang')";
+						$detailAll = mysqli_query($koneksi, $sql) or die($koneksi);
+						foreach ($detailAll as $key => $value) {
+							$jumlahHarga += $value['harga_sewa'] * $value['jumlah_barang_sewa'] * $transaksi['jumlah_hari'];
+						}
+					?>
 					<tr>
-						<th><?php echo $i; ?></th>
-						<th><?php echo $transaksi['no_transaksi']; ?></th>
-						<th><?php echo $transaksi['tanggal_transaksi']; ?></th>
-						<th><?php echo $transaksi['nama_pelanggan']; ?></th>
-						<th><?php echo format($transaksi['jumlah_harga'], 'currency'); ?></th>
-						<th><?php echo setBadges($transaksi['diantarkan']); ?></th>
-						<th><?php echo setBadges($transaksi['status_transaksi']); ?></th>
+						<th><?= $i ?></th>
+						<th><?= $transaksi['no_transaksi'] ?></th>
+						<th><?= $transaksi['tgl_transaksi'] ?></th>
+						<th><?= $transaksi['nama_pelanggan'] ?></th>
+						<th><?= format($jumlahHarga, 'currency') ?></th>
+						<th><?= setBadges($transaksi['diantarkan']) ?></th>
+						<th><?= setBadges($transaksi['status_transaksi']) ?></th>
 					</tr>
 					<?php $i++; ?>
 				<?php endwhile ?>
