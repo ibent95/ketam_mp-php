@@ -131,7 +131,7 @@
 					$array = array_keys($_SESSION["additional_cost"]);
 					for ($i = 0; $i <= end($array); $i++) {
 						// if ($idAdditionalCost == $i AND array_key_exists($i, $_SESSION['additional_cost'])) {
-							echo $sql = "INSERT INTO `data_transaksi_tambah` (`id_transaksi`, `no_transaksi`, `info_transaksi`, `harga`, `keterangan`) VALUES ('$transaksi[id_transaksi]', '$transaksi[no_transaksi]', '" . $_SESSION['additional_cost'][$i]['info_transaksi'] . "', '" . $_SESSION['additional_cost'][$i]['harga'] . "', '" . $_SESSION['additional_cost'][$i]['keterangan'] . "')";
+							$sql = "INSERT INTO `data_transaksi_tambah` (`id_transaksi`, `no_transaksi`, `info_transaksi`, `harga`, `keterangan`) VALUES ('$transaksi[id_transaksi]', '$transaksi[no_transaksi]', '" . $_SESSION['additional_cost'][$i]['info_transaksi'] . "', '" . $_SESSION['additional_cost'][$i]['harga'] . "', '" . $_SESSION['additional_cost'][$i]['keterangan'] . "')";
 							mysqli_query($koneksi, $sql) or die($koneksi);
 						// }
 					}
