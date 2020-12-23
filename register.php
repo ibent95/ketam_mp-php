@@ -49,9 +49,7 @@
                                 <div class="login-form">
                                     <h4 style="margin-bottom: 1%;">Register</h4>
 
-                                    <?php
-                                        getNotifikasi();
-                                    ?>
+                                    <?= getNotifikasi() ?>
 
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs nav-justified customtab" role="tablist">
@@ -65,6 +63,16 @@
                                                 </span>
                                             </a>
                                         </li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#toko" role="tab">
+												<span class="hidden-sm-up">
+													<i class="ti-home"></i>
+												</span>
+												<span class="hidden-xs-down">
+													Toko
+												</span>
+											</a>
+										</li>
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content">
@@ -121,6 +129,53 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        <div class="tab-pane p-20" id="toko" role="tabpanel">
+											<form action="index.php?content=login_proses&proses=register&user=toko" method="POST" enctype="multipart/form-data" role="form" id="register-form">
+												<div class="form-group">
+													<label>Nama Lengkap</label>
+													<input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap..." required>
+												</div>
+
+												<div class="form-group">
+													<label>No. HP</label>
+													<input type="text" class="form-control" name="no_hp" placeholder="No. HP..." required>
+												</div>
+
+												<div class="form-group">
+													<label>Email</label>
+													<input type="email" class="form-control" name="email" placeholder="Email...">
+												</div>
+
+												<div class="form-group">
+													<label>Alamat</label>
+													<input type="text" class="form-control" name="alamat" placeholder="Alamat..." required>
+												</div>
+
+												<div class="form-group">
+													<label>User Name</label>
+													<input type="text" class="form-control" name="username" placeholder="User Name" required>
+												</div>
+
+												<div class="form-group">
+													<label>Password</label>
+													<input type="password" class="form-control" name="password" placeholder="Password" required>
+												</div>
+
+												<div class="form-group">
+													<label>Foto</label>
+													<input type="file" class="form-control" name="url_foto" placeholder="Foto">
+												</div>
+
+												<button type="submit" name="register" class="btn btn-primary btn-flat m-b-10 m-t-10">Register</button>
+
+												<div class="register-link m-t-15 text-center">
+													<p>
+														Sudah punya akun ?
+														<a href="login.php"> Sign in</a>
+													</p>
+												</div>
+											</form>
+										</div>
                                     </div>
                                 </div>
                             </div>

@@ -90,7 +90,7 @@
 								<option value="">Kategori Barang</option>
 								<?php foreach ($kategoriAll AS $data) : ?>
 									<option
-										value="<?php echo $data['id']; ?>"
+										value="<?php echo $data['id_kategori']; ?>"
 									>
 										<?php echo $data['nama_kategori']; ?>
 									</option>
@@ -133,11 +133,8 @@
 					<?php foreach ($barangAll AS $data) : ?>
 						<div class="col-md-4">
 							<div class="single-best-receipe-area mb-30">
-								<a href="<?php echo $csv::$URL_BASE; ?>/?content=data_barang&id=<?php echo $data['id']; ?>">
-									<img 
-										src="<?php echo searchFile($data['url_foto'], 'img', 'full'); ?>" 
-										alt="<?php echo $data['nama_barang']; ?>"
-									>
+								<a href="<?php echo $csv::$URL_BASE; ?>/?content=data_barang&id=<?php echo $data['id_barang']; ?>">
+									<img src="<?php echo ($data['foto']) ? searchFile($data['foto'], 'img', 'short') : '' ; ?>" alt="<?php echo $data['nama_barang']; ?>">
 									<div class="receipe-content">
 										<h5><?php echo $data['nama_barang']; ?></h5>
 									</div>

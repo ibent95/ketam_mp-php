@@ -164,6 +164,7 @@
 									<th>Diantarkan</th>
 									<th>Total Harga</th>
 									<th>Status Transaksi</th>
+									<th>Rating</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
@@ -174,11 +175,12 @@
 									<?php while ($data = mysqli_fetch_array($transaksiAll, MYSQLI_BOTH)) : ?>
 										<tr>
 											<td><?= $inc ?></td>
-											<td><?= $data['tanggal_transaksi'] ?></td>
+											<td><?= $data['tgl_transaksi'] ?></td>
 											<td><?= $data['nama_pelanggan'] ?></td>
 											<td><?= setBadges($data['diantarkan']) ?></td>
 											<td class="text-right"><?= format(getTotalHargaTransaksi($data['id_transaksi']), "currency") ?></td>
 											<td><?= setBadges($data['status_transaksi']) ?></td>
+											<td><?= showRating($data['rating'], 11) ?></td>
 											<td>
 												<a class="btn btn-dark btn-sm" href="?content=data_transaksi_persetujuan_form&action=lihat&id=<?= $data['id_transaksi'] ?>">
 													Rincian

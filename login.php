@@ -48,11 +48,9 @@
                             <div class="login-content card">
                                 <div class="login-form">
                                     <h4>Login</h4>
-                                    
-                                    <?php
-                                        getNotifikasi();
-                                    ?>
-                                    
+
+                                    <?= getNotifikasi() ?>
+
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs nav-justified customtab" role="tablist">
                                         <li class="nav-item"> 
@@ -119,6 +117,7 @@
                                                 <button type="submit" class="btn btn-primary btn-flat m-b-15 m-t-15">Masuk</button>
                                                 <div class="register-link m-t-15 text-center">
                                                     <p>
+                                                        Tidak punya akun ? Silahkan <a href="register.php"> daftar di sini..!</a> <br>
                                                         Pengguna lain ? Silahkan <a href="login_pengguna_lain.php"> masuk di sini..!</a>
                                                     </p>
                                                 </div>

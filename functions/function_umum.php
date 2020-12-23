@@ -741,4 +741,36 @@
 			echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 		}
 	}
+
+	function showRating($rating, $fontSize = 12) {
+		$stars = "<span id='ratingTemplate' style='text-align: center;'>";
+		for ($i = 0; $i < 5; $i++) {
+			if ($i < $rating) {
+				// document.getElementById((i + 1) + subid).style.color = "orange";
+				$stars .= "<i id='" . ($i + 1) . "-star' style='font-size:" . $fontSize . "px; color: orange;' class='fa fa-star star-checked'></i>";
+			} else {
+				// document.getElementById((i + 1) + subid).style.color = "black";
+				$stars .= "<i id='" . ($i + 1) . "-star' style='font-size:" . $fontSize . "px; color: black;' class='fa fa-star'></i>";
+			}
+		}
+		$stars .= "</span>";
+		return $stars;
+	}
+
+	function calculateAllRating($ratings) {
+		$a = 0;
+		$b = 0;
+		$total = 0;
+		// Rumus (5*252 + 4*124 + 3*40 + 2*29 + 1*33) / (252+124+40+29+33) = 4.11 and change
+		if (is_array($ratings)) {
+			foreach ($ratings as $rating) {
+				$a += $rating['star'] * $rating['count'];
+				$b += $rating['count'];
+			}
+			$total = ($a != 0 AND $b != 0) ? (float) $a / $b : 0 ;
+		} else {
+			$total = "Sorry, the data type that you pass is not in array..!";
+		}
+		return $total;
+	}
 ?>
