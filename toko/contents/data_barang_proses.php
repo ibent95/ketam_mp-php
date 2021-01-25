@@ -1,4 +1,4 @@
-<?php 
+<?php
     $proses 			= $_GET['proses'];
 	if ($proses == 'remove') {
 		$id 			= (isset($_GET['id'])) ? antiInjection($_GET['id']) : NULL;
@@ -32,7 +32,7 @@
     $messages   		= array();
     $sql				= "";
 	$redirect 			= '?content=data_barang';
-	
+
 	switch ($proses) {
 		case 'add':
 			try {
@@ -88,6 +88,21 @@
 					echo "<script>window.history.go(-1);</script>";
 					break;
 				}
+			} catch (Exception $e) {
+				array_push($messages, array("danger", "Data gagal diubah..!"));
+			}
+			break;
+		case 'add_stok':
+			try {
+				$stok = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT `persediaan` FROM `data_barang` WHERE `id_barang` = '$id';"))['persediaan'];
+				$stok += $persediaan;
+				// Data Barang Masuk
+				mysqli_query($koneksi, "INSERT INTO `data_barang_masuk` (`tanggal`, `id_barang`, `jumlah`, `harga_beli`) VALUES ('" . date('Y-m-d') . "', '$id', '$persediaan', '$hargaBeli')") or die ($koneksi);
+				$transaksiKeluar = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM `data_barang_masuk` WHERE `tanggal` = '" . date('Y-m-d') . "%' AND `id_barang` = '$id' AND `jumlah` = '$persediaan' AND `harga_beli` = '$hargaBeli' "));
+				mysqli_query($koneksi, "INSERT INTO `data_laporan_arus_kas`(`jenis_transaksi`, `id_no_transaksi`, `tgl_transaksi`, `keterangan`, `kuantitas`, `harga`) VALUES ('keluar', '$transaksiKeluar[id_barang_masuk]', '$transaksiKeluar[tanggal]', 'Pembelian tanggal $transaksiKeluar[tanggal]', '$transaksiKeluar[jumlah]', '$transaksiKeluar[harga_beli]')") or die ($koneksi);
+				// Data Barang
+				mysqli_query($koneksi, "UPDATE `data_barang` SET `persediaan` = '$stok' WHERE `id_barang` = '$id';") or die ($koneksi);
+				array_push($messages, array("success", "Data berhasil diubah..!"));
 			} catch (Exception $e) {
 				array_push($messages, array("danger", "Data gagal diubah..!"));
 			}

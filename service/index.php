@@ -88,14 +88,14 @@
 				if (!empty($messages['warning'])) {
 					$messages['error'] = "Pendaftaran tidak berhasil dilakukan..!";
 				} else {
-					try {
+					//try {
 						unset($messages['warning']);
 						mysqli_query($koneksi, "INSERT INTO `data_pelanggan` (`nama_pelanggan`, `email`, `telepon`, `alamat`, `username`, `password`, `foto`, `foto_ktp`, `status_akun`, `user_token`) VALUES ('" . $pelangganInfo['pelanggan']['nama_pelanggan'] . "', '" . $pelangganInfo['pelanggan']['email'] . "', '" . $pelangganInfo['pelanggan']['telepon'] . "', '" . $pelangganInfo['pelanggan']['alamat'] . "', '" . $pelangganInfo['pelanggan']['username'] . "', '" . $pelangganInfo['pelanggan']['password'] . "', '" . $pelangganInfo['pelanggan']['foto'] . "', '" . $pelangganInfo['pelanggan']['foto_ktp'] . "', 'blokir', '$userToken'
 						)");
 						$messages['success'] = "Pendaftaran berhasil dilakukan, silahkan akses email anda untuk mengkonfirmasi dan mengaktifkan akun..!";
-					} catch (\Throwable $th) {
-						$messages['error'] = "Pendaftaran tidak berhasil dilakukan, mohon coba sekali lagi..!";
-					}
+					//} catch (\Throwable $th) {
+					//	$messages['error'] = "Pendaftaran tidak berhasil dilakukan, mohon coba sekali lagi..!";
+					//}
 				}
 				break;
 			case 'get_init_home':
@@ -471,10 +471,10 @@
 				}
 				break;
 			case 'upload_file':
-				$folder			= (isset($_POST['folder']) AND !empty($_POST['folder'])) ? $_POST['folder'] : 'others' ;
-				$type			= (isset($_POST['type']) AND !empty($_POST['type'])) ? $_POST['type'] : 'img' ;
-				$length			= (isset($_POST['length']) AND !empty($_POST['length'])) ? $_POST['length'] : 'short' ;
-				$file			= (isset($_FILES['file']) AND !empty($_FILES['file'])) ? uploadFile($_FILES['file'], $folder, $type, $length) : NULL ;
+				$folder			= ($_GET['folder']) ? $_GET['folder'] : 'others' ;
+				$type			= ($_GET['type']) ? $_GET['type'] : 'img' ;
+				$length			= ($_GET['length']) ? $_GET['length'] : 'short' ;
+				$file			= ($_FILES['file']) ? uploadFile($_FILES['file'], $folder, $type, $length) : NULL ;
 
 				$messages['file_url'] = $file;
 				if ($file) {

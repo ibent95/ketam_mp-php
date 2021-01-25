@@ -223,6 +223,13 @@
 													Discount
 												</button>
 												<a
+													class="btn btn-warning btn-sm"
+													href="?content=data_barang_masuk_form&action=tambah_persediaan&id=<?php echo $data['id_barang']; ?>"
+												>
+													<i class="fa fa-download"></i>
+													Masuk
+												</a>
+												<a
 													class="btn btn-primary btn-sm"
 													href="?content=data_barang_form&action=ubah&id=<?php echo $data['id_barang']; ?>"
 												>
@@ -262,13 +269,13 @@
 
 </div>
 
-<div 
-	class="modal" 
-	tabindex="-1" 
-	role="dialog" 
-	aria-labelledby="" 
+<div
+	class="modal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby=""
 	aria-hidden="true"
-	id="modal_discount_item" 
+	id="modal_discount_item"
 >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">

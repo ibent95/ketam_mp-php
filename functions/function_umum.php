@@ -207,8 +207,8 @@
 	}
 
 	function uploadFile($file, $folder = "url_foto", $type = "img", $length = "short") {
-		$server = (($_SERVER['SERVER_NAME'] == "localhost") OR ($_SERVER['SERVER_NAME'] == "127.0.0.1")) ? $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . "/" . explode("/", $_SERVER['REQUEST_URI'])[1] : $_SERVER['SERVER_NAME'] ;
-		$rootFolder = (($_SERVER['SERVER_NAME'] == "localhost") OR ($_SERVER['SERVER_NAME'] == "127.0.0.1")) ? dirname($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/" . explode("/", $_SERVER['REQUEST_URI'])[1] . "/assets/" . $type) : dirname($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/assets/" . $type) ;
+		$server = (($_SERVER['SERVER_NAME'] == "localhost") OR ($_SERVER['SERVER_NAME'] == "127.0.0.1")) ? $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . "/" . explode("/", $_SERVER['REQUEST_URI'])[1] : $_SERVER['SERVER_NAME'] . "/ketam_mp" ;
+		$rootFolder = (($_SERVER['SERVER_NAME'] == "localhost") OR ($_SERVER['SERVER_NAME'] == "127.0.0.1")) ? dirname($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/" . explode("/", $_SERVER['REQUEST_URI'])[1] . "/assets/" . $type) : dirname($_SERVER['CONTEXT_DOCUMENT_ROOT'] . "/ketam_mp/assets/" . $type) ;
 
 		$errors = array(); // Store all foreseen and unforseen errors here
 		$fileExtensions = ['jpeg', 'jpg', 'png', 'gif']; // Get all the file extensions
