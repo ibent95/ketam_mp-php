@@ -314,7 +314,7 @@ h6 {
 }
 
 .text-muted {
-    color: #99abb4 !important;
+    color: #000000 !important;
 }
 
 .text-warning {
@@ -358,7 +358,7 @@ h6 {
 }
 
 .bg-primary {
-    background-color: #5c4ac7 !important;
+    background-color: #000000 !important;
 }
 
 .bg-success {
@@ -1268,7 +1268,7 @@ h6.h1 {
 .header {
     position: relative;
     z-index: 50;
-    background: #fff;
+    background: #a7b4ff;
     box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -1284,7 +1284,8 @@ h6.h1 {
 .header .top-navbar .navbar-header {
     line-height: 45px;
     text-align: center;
-    background: #fff;
+    background: #6a7eeb;
+    1;
 }
 
 .header .top-navbar .navbar-header .navbar-brand {
@@ -1843,7 +1844,7 @@ textarea {
 }
 
 .sidebar-nav ul li a {
-    color: #607d8b;
+    color: #000000;
     padding: 7px 35px 7px 15px;
     display: block;
     font-size: 14px;
@@ -1883,7 +1884,7 @@ textarea {
     font-size: 12px;
     margin-bottom: 0;
     padding: 14px 14px 14px 20px;
-    color: #607d8b;
+    color: #000000;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -2065,6 +2066,7 @@ textarea {
         padding-bottom: 0;
         position: absolute;
         overflow-x: hidden !important;
+        
     }
     .mini-sidebar .hide-menu {
         display: none;
@@ -2122,7 +2124,7 @@ textarea {
 }
 
 .badge-success {
-    background-color: #26dad2;
+    background-color: #42ff29;
 }
 
 .badge-info {
@@ -3356,8 +3358,8 @@ table.dataTable thead .sorting::after {
 }
 
 .btn-primary {
-    background: #5c4ac7;
-    border: 1px solid #5c4ac7;
+    background: #3a96ff;
+    border: 1px solid #dddaea;
     -webkit-box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
     box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
     -webkit-transition: 0.2s ease-in;
@@ -3588,8 +3590,8 @@ table.dataTable thead .sorting::after {
 }
 
 .btn-info {
-    background: #1976d2;
-    border: 1px solid #1976d2;
+    background: #fbff01;
+    border: 1px solid #eaff71;
     -webkit-box-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
     box-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
     -webkit-transition: 0.2s ease-in;
@@ -3598,14 +3600,14 @@ table.dataTable thead .sorting::after {
 }
 
 .btn-info:hover {
-    background: #1976d2;
+    background: #cfd219;
     border: 1px solid #1976d2;
     -webkit-box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
     box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
 }
 
 .btn-info:active {
-    background: #028ee1;
+    background: #ffffff;
     -webkit-box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
     box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
 }
@@ -3621,11 +3623,11 @@ table.dataTable thead .sorting::after {
 }
 
 .btn-info:focus {
-    background: #028ee1;
+    background: #c7ca11;
     -webkit-box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
     box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
-    background-color: #028ee1;
-    border: 1px solid #028ee1;
+    background-color: #fffb05;
+    border: 1px solid #fffb05;
 }
 
 .btn-info.disabled {
@@ -3782,7 +3784,7 @@ table.dataTable thead .sorting::after {
 }
 
 .btn-danger {
-    background: #ef5350;
+    background: #ff0400;
     border: 1px solid #ef5350;
     -webkit-box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
     box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);

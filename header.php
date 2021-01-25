@@ -32,12 +32,12 @@
 	<!-- Navbar Area -->
 	<div class="delicious-main-menu">
 		<div class="classy-nav-container breakpoint-off">
-			<div class="container">
+			<div class="container left" >
 				<!-- Menu -->
 				<nav class="classy-navbar justify-content-between" id="deliciousNav">
 
 					<!-- Logo -->
-					<a class="nav-brand" href="<?= class_static_value::$URL_BASE ?>"><img src="assets/frontend/img/core-img/logo.png" alt=""></a>
+					<a class="nav-brand" href="<?= class_static_value::$URL_BASE ?>"><img src="assets/frontend/img/core-img/logo1.png" width="400px" height="400" alt=""></a>
 
 					<!-- Navbar Toggler -->
 					<div class="classy-navbar-toggler">

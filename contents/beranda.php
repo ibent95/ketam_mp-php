@@ -15,9 +15,9 @@
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
 						<div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
-							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Rumah Busana Syar'i Makassar</h2>
-							<p data-animation="fadeInUp" data-delay="700ms">Kami menyediakan berbagai macam busana muslimah, dress muslimah, hijab dan aneka mukena.</p>
-							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Barang</a>
+							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Outdor Equipment Rental</h2>
+							<p data-animation="fadeInUp" data-delay="700ms">Kami Menyediakan Berbagai Macam Alat Outdor</p>
+							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Alat</a>
 						</div>
 					</div>
 				</div>
@@ -30,9 +30,9 @@
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
 						<div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
-							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Rumah Busana Syar'i Makassar</h2>
-							<p data-animation="fadeInUp" data-delay="700ms">Kami menyediakan berbagai macam busana muslimah, dress muslimah, hijab dan aneka mukena.</p>
-							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Barang</a>
+							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Outdor Equipment Rental</h2>
+							<p data-animation="fadeInUp" data-delay="700ms"Kami Menyediakan Berbagai Macam Alat Outdor</p>
+							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Alat</a>
 						</div>
 					</div>
 				</div>
@@ -45,9 +45,9 @@
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
 						<div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
-							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Rumah Busana Syar'i Makassar</h2>
-							<p data-animation="fadeInUp" data-delay="700ms">Kami menyediakan berbagai macam busana muslimah, dress muslimah, hijab dan aneka mukena.</p>
-							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Barang</a>
+							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Outdor Equipment Rental</h2>
+							<p data-animation="fadeInUp" data-delay="700ms">Kami Menyediakan Berbagai Macam Alat Outdor.</p>
+							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Alat</a>
 						</div>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 <!-- ##### Top Catagory Area Start ##### -->
 <section class="top-catagory-area section-padding-80-0">
 	<div class="container">
-		<img src="assets/frontend/img/banner.jpg" alt="">
+		<!--<img src="assets/frontend/img/banner.jpg" alt="">-->
 	</div>
 </section>
 <!-- ##### Top Catagory Area End ##### -->

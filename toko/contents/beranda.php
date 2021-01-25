@@ -9,15 +9,20 @@
         </ol>
     </div>
 </div>
+
+<!-- <div class="Container">
+    <img src="assets/img/Capture.png">
+</div> -->
 <!-- End Bread crumb -->
 
 <!-- Container fluid  -->
-<div class="container-fluid">
+ <div class="container-fluid">
 
-    <?php getNotifikasi(); ?>
+    <?php getNotifikasi(); ?> 
 
     <!-- Start Page Content -->
-    <!-- <div class="row">
+     <div><center><h1>PENYEWAAN ALAT OUTDOR</h1></center></div>
+    <div class="row">
         <div class="col-md-3">
             <div class="card p-30">
                 <div class="media">
@@ -30,7 +35,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
         <div class="col-md-3">
             <div class="card p-30">
                 <div class="media">
@@ -70,7 +75,15 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>  
+
+    <!--<div>
+        <center>
+            <br> <br>
+                <img src="assets/img/Capture.png" width="200px" height="150px"> 
+        </center>
+    </div>-->
+
 
     <!-- <div class="row">
         <div class="col-lg-3">
@@ -343,7 +356,7 @@
             </div>
         </div>
 
-    </div> -->
+    </div> 
     <!-- End Page Content -->
 
 <!-- </div> -->

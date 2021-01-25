@@ -13,8 +13,8 @@
 					<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 				</div>
 				<!-- Footer Logo -->
-				<div class="footer-logo">
-					<a href="<?php echo class_static_value::$URL_BASE; ?>"><img src="assets/frontend/img/core-img/logo.png" alt=""></a>
+				<!--<div class="footer-logo">
+					<a href="<?php echo class_static_value::$URL_BASE; ?>"><img src="assets/frontend/img/core-img/logo.png" alt=""></a>-->
 				</div>
 				<!-- Copywrite -->
 				<p>
