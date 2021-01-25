@@ -10,7 +10,7 @@
 <section class="hero-area">
 	<div class="hero-slides owl-carousel">
 		<!-- Single Hero Slide -->
-		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/bg1.png);">
+		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/1.png);">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -25,7 +25,7 @@
 		</div>
 
 		<!-- Single Hero Slide -->
-		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/bg6.png);">
+		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/2.png);">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -40,7 +40,7 @@
 		</div>
 
 		<!-- Single Hero Slide -->
-		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/bg7.jpg);">
+		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/3.png);">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
