@@ -185,7 +185,8 @@
 				</li>
 
 				<li>
-					<a aria-expanded="false" href="?content=data_informasi_kerusakan"> <!-- class="has-arrow" -->
+					<a aria-expanded="false" href="?content=data_informasi_kerusakan">
+						<!-- class="has-arrow" -->
 						<i class="fas fa-info-circle"></i>
 						<span class="hide-menu">
 							Data Informasi Kerusakan
@@ -201,6 +202,16 @@
 						<i class="fas fa-book"></i>
 						<span class="hide-menu">
 							Transaksi
+						</span>
+					</a>
+				</li>
+
+				<li>
+					<a aria-expanded="false" href="?content=laporan_arus_kas">
+						<!-- class="has-arrow" -->
+						<i class="fas fa-book"></i>
+						<span class="hide-menu">
+							Arus Kas
 						</span>
 					</a>
 				</li>

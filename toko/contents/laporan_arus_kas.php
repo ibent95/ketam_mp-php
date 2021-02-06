@@ -96,9 +96,9 @@
 
                 <div class="card-body">
 
-                    <?php getNotifikasi(); ?>
+                    <?= getNotifikasi() ?>
 
-                    <form action="laporan_barang_masuk_keluar.php" method="POST">
+                    <form action="laporan_arus_kas.php" method="POST">
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <label class="col-form-label" for="">Tanggal Awal</label>
@@ -113,7 +113,7 @@
                                 <select class="form-control input-rounded input-focus form-control-lg" name="id_kategori" id="id_kategori">
                                     <option value="">-- Silahakan Pilih Kategori --</option>
                                     <?php foreach ($kategoriAll as $data): ?>
-                                        <option 
+                                        <option
                                             value="<?php echo $data['id']; ?>"
                                         >
                                             <?php echo $data['nama_kategori']; ?>
@@ -139,10 +139,10 @@
                         </div>
 
                     </form>
-                    
+
                 </div>
                 <!-- End Card Body -->
-                
+
             </div>
             <!-- End Card -->
 

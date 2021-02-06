@@ -72,32 +72,40 @@ $kategoriAll = getKategoriAll('ASC');
 					<?= getNotifikasi() ?>
 					<form class="" <?php if ($action == 'tambah_persediaan') : ?> action="?content=data_barang_proses&proses=add_stok" <?php else : ?> action="?content=data_barang_proses&proses=edit" <?php endif ?> method="POST" enctype="multipart/form-data">
 						<div class="row">
-							<div class="col-md">
+							<div class="col-md-5">
 								<!-- <p>Data Barang</p> -->
 								<?php if ($action == 'tambah_persediaan') : ?>
 									<input type="hidden" name="id" value="<?= antiInjection($_GET['id']) ?>">
 								<?php endif ?>
 
-								<div class="form-group">
-									<label for="nama_barang" class="control-label">Nama Barang</label>
-									<input type="text" class="form-control-plaintext input-rounded input-focus" name="nama_barang" placeholder="Masukan Nama..." id="nama_barang" <?php if ($action == 'tambah_persediaan') : ?> readonly value="<?= $barang['nama_barang'] ?>" <?php endif ?> />
+								<div class="form-group row">
+									<label for="nama_barang" class="col-md-4 control-label">Nama Barang :</label>
+									<div class="col-md-8">
+										<?= $barang['nama_barang'] ?>
+									</div>
 								</div>
 
-								<div class="form-group">
-									<label for="id_kategori" class="control-label">Kategori Barang</label>
-									<input type="text" class="form-control-plaintext input-rounded input-focus" name="nama_barang" placeholder="Masukan Nama..." id="nama_barang" <?php if ($action == 'tambah_persediaan') : ?> readonly <?php foreach ($kategoriAll as $data) : ?> <?php if ($barang['id_kategori'] == $data['id_kategori']) : ?> value="<?= $data['nama_kategori'] ?>" <?php endif ?> <?php endforeach ?> <?php endif ?> />
+								<div class="form-group row">
+									<label for="id_kategori" class="col-md-4 control-label">Kategori Barang :</label>
+									<div class="col-md-8">
+										<?php foreach ($kategoriAll as $data) : ?> <?php if ($barang['id_kategori'] == $data['id_kategori']) : ?> <?= $data['nama_kategori'] ?> <?php endif ?> <?php endforeach ?>
+									</div>
 								</div>
 
-								<div class="form-group">
-									<label for="harga_jual" class="control-label">Harga Jual (Rp)</label>
-									<input type="number" min="0" class="form-control-plaintext input-rounded input-focus" name="harga_jual" placeholder="Masukan Harga Jual..." id="harga_jual" <?php if ($action == 'tambah_persediaan') : ?>readonly value="<?= $barang['harga_jual'] ?>" <?php endif ?> />
+								<div class="form-group row">
+									<label for="harga_jual" class="col-md-4 control-label">Harga Jual (Rp) :</label>
+									<div class="col-md-8">
+										<?= $barang['harga_sewa'] ?>
+									</div>
 								</div>
 
 								<?php if ($action == 'tambah_persediaan') : ?>
 
-									<div class="form-group">
-										<label for="persediaan" class="control-label">Persediaan</label>
-										<input type="number" class="form-control-plaintext input-rounded input-focus" name="persediaan" min="1" placeholder="Masukan Persediaan..." <?php if ($action == 'tambah_persediaan') : ?> readonly value="<?= $barang['persediaan'] ?>" <?php endif ?> />
+									<div class="form-group row">
+										<label for="persediaan" class="col-md-4 control-label">Persediaan :</label>
+										<div class="col-md-8">
+											<?= $barang['stok'] ?>
+										</div>
 									</div>
 
 								<?php endif ?>
@@ -124,12 +132,12 @@ $kategoriAll = getKategoriAll('ASC');
 
 						<div class="row">
 							<div class="col-md-12">
-								<div class="form-group">
+								<div class="form-group text-right">
 									<button type="submit" class="btn btn-primary" name="simpan">
 										<i class="fa fa-check"></i>
 										Simpan
 									</button>
-									<button type="reset" class="btn btn-danger">Reset</button>
+									<!--<button type="reset" class="btn btn-danger">Reset</button>-->
 								</div>
 							</div>
 						</div>

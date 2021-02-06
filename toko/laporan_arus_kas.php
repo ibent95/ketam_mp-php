@@ -1,5 +1,5 @@
 <?php
-    
+
     include_once '../functions/class_static_value.php';
     $csv = new class_static_value();
 
@@ -7,8 +7,8 @@
 	include_once '../functions/function_umum.php';
 	include_once '../functions/function_pelanggan.php';
 	include_once '../functions/function_barang.php';
-	include_once '../functions/function_pemesanan.php';
-    
+	include_once '../functions/function_transaksi.php';
+
     include_once '../plugins/dompdf/autoload.inc.php';
 
 	$tanggal_awal   = (!empty($_POST['tanggal_awal'])) ? $_POST['tanggal_awal'] : date("Y-m-d") ;
@@ -16,49 +16,25 @@
 	$id_kategori    = (isset($_POST['id_kategori']) AND !empty($_POST['id_kategori'])) ? $_POST['id_kategori'] : "" ;
 	$id_barang      = (isset($_POST['id_barang']) AND !empty($_POST['id_barang'])) ? $_POST['id_barang'] : "" ;
 
-    $sql = " 
-        SELECT * 
-        FROM `data_barang_masuk` 
-        INNER JOIN `data_barang`
-        ON data_barang_masuk.id_barang = data_barang.id
-        INNER JOIN `data_barang_kategori`
-        ON data_barang.id_kategori = data_barang_kategori.id 
-        WHERE ((data_barang_masuk.tanggal >= '$tanggal_awal 00:00:00') AND (data_barang_masuk.tanggal <= '$tanggal_akhir 23:59:00'))
-        AND (data_barang.id_kategori LIKE '%$id_kategori') 
-        AND (data_barang_masuk.id_barang LIKE '%$id_barang')
-        ORDER BY data_barang_masuk.id ASC
-    ";
+    $sql = "SELECT * FROM `data_barang_masuk` INNER JOIN `data_barang` ON data_barang_masuk.id_barang = data_barang.id_barang INNER JOIN `data_kategori` ON data_barang.id_kategori = data_kategori.id_kategori WHERE ((data_barang_masuk.tanggal >= '$tanggal_awal 00:00:00') AND (data_barang_masuk.tanggal <= '$tanggal_akhir 23:59:00')) AND (data_barang.id_kategori LIKE '%$id_kategori') AND (data_barang_masuk.id_barang LIKE '%$id_barang') ORDER BY data_barang_masuk.id_barang ASC";
     $barangMasukAll = mysqli_query($koneksi, $sql) or die($koneksi);
     $totalMasuk = 0;
 
-    $sql = " 
-        SELECT * 
-        FROM `data_pemesanan_detail` 
-        INNER JOIN `data_pemesanan`
-        ON data_pemesanan_detail.id_pemesanan = data_pemesanan.id
-        INNER JOIN `data_barang`
-        ON data_pemesanan_detail.id_barang = data_barang.id
-        INNER JOIN `data_barang_kategori`
-        ON data_barang.id_kategori = data_barang_kategori.id 
-        WHERE ((data_pemesanan.tanggal >= '$tanggal_awal 00:00:00') AND (data_pemesanan.tanggal <= '$tanggal_akhir 23:59:00'))
-        AND (data_barang.id_kategori LIKE '%$id_kategori') 
-        AND (data_pemesanan_detail.id_barang LIKE '%$id_barang')
-        ORDER BY data_pemesanan.id ASC
-    ";
+    $sql = "SELECT * FROM `data_transaksi_detail` INNER JOIN `data_transaksi` ON data_transaksi_detail.id_transaksi = data_transaksi.id_transaksi INNER JOIN `data_barang` ON data_transaksi_detail.id_barang = data_barang.id_barang INNER JOIN `data_kategori` ON data_barang.id_kategori = data_kategori.id_kategori WHERE ((data_transaksi.tgl_awal_transaksi >= '$tanggal_awal 00:00:00') AND (data_transaksi.tgl_akhir_transaksi <= '$tanggal_akhir 23:59:00')) AND (data_barang.id_kategori LIKE '%$id_kategori') AND (data_transaksi_detail.id_barang LIKE '%$id_barang') ORDER BY data_transaksi.id_transaksi ASC";
     $barangKeluarAll = mysqli_query($koneksi, $sql) or die($koneksi);
     $totalKeluar = 0;
-    
+
     $totalUntungRugi = 0;
 
 	$i = 1;
 
-	// reference the Dompdf namespace
-	use Dompdf\Dompdf;
+	//// reference the Dompdf namespace
+	//use Dompdf\Dompdf;
 
-	// instantiate and use the dompdf class
-	$dompdf = new Dompdf();
+	//// instantiate and use the dompdf class
+	//$dompdf = new Dompdf();
 
-	ob_start(); 
+	//ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +70,7 @@
                             <td><?php echo $inc; ?></td>
                             <td><?php echo $barangMasuk['tanggal']; ?></td>
                             <td><?php echo "[" . $barangMasuk['id_barang'] . "] " . $barangMasuk['nama_barang']; ?></td>
-                            <td><?php echo $barangMasuk['kuantitas']; ?></td>
+                            <td><?php echo $barangMasuk['jumlah']; ?></td>
                             <td class="text-right"><?php echo format($barangMasuk['harga_beli'], 'currency'); $totalMasuk += (int) $barangMasuk['harga_beli']; ?></td>
                         </tr>
                         <?php $inc++; ?>
@@ -126,22 +102,22 @@
     </body>
 </html>
 
-<?php 
-	
-	$html = ob_get_contents(); //Proses untuk mengambil hasil dari OB..
-	ob_end_clean();
-	
-	// (Optional) Setup the paper size and orientation
-	$dompdf->setPaper('A4', 'landscape');
-	// $dompdf->setPaper(array(0, 0, 550, 300));
-	
-	$dompdf->loadHtml(utf8_encode($html));
-	
-	// Render the HTML as PDF
-	$dompdf->render();
+<?php
 
-	// Output the generated PDF to Browser
-	$dompdf->stream("Laporan_Barang_Masuk_Keluar_" . date('Y-m-d') . ".pdf", array("Attachment" => 0));
+	//$html = ob_get_contents(); //Proses untuk mengambil hasil dari OB..
+	//ob_end_clean();
 
-	// exit(0);
+	//// (Optional) Setup the paper size and orientation
+	//$dompdf->setPaper('A4', 'landscape');
+	//// $dompdf->setPaper(array(0, 0, 550, 300));
+
+	//$dompdf->loadHtml(utf8_encode($html));
+
+	//// Render the HTML as PDF
+	//$dompdf->render();
+
+	//// Output the generated PDF to Browser
+	//$dompdf->stream("Laporan_Barang_Masuk_Keluar_" . date('Y-m-d') . ".pdf", array("Attachment" => 0));
+
+	//// exit(0);
 ?>

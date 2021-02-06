@@ -14,12 +14,15 @@
 			$diskon 	= (isset($_POST['diskon'])) ? $_POST['diskon'] : NULL;
 			$tglAwal 	= (isset($_POST['tanggal_awal_diskon'])) ? $_POST['tanggal_awal_diskon'] : NULL;
 			$tglAkhir 	= (isset($_POST['tanggal_akhir_diskon'])) ? $_POST['tanggal_akhir_diskon'] : NULL;
+		} elseif ($proses == 'add_stok') {
+			$id 		= (isset($_POST['id'])) ? antiInjection($_POST['id']) : NULL;
 		}
 		$idToko				= (isset($_SESSION['id'])) ? $_SESSION['id'] : NULL ;
 		$namaBarang 		= (isset($_POST['nama_barang'])) ? $_POST['nama_barang'] : NULL ;
 		$idKategori 		= (isset($_POST['id_kategori'])) ? antiInjection($_POST['id_kategori']) : NULL;
 		$idMerk 			= (isset($_POST['id_merk'])) ? antiInjection($_POST['id_merk']) : NULL;
 		$hargaSewa			= (isset($_POST['harga_sewa'])) ? antiInjection($_POST['harga_sewa']) : 0 ;
+		$hargaBeli			= (isset($_POST['harga_beli'])) ? antiInjection($_POST['harga_beli']) : 0 ;
 		$dendaHilang		= (isset($_POST['denda_hilang'])) ? antiInjection($_POST['denda_hilang']) : 0 ;
 		$dendaLewat			= (isset($_POST['denda_lewat'])) ? antiInjection($_POST['denda_lewat']) : 0 ;
 		$stok				= (isset($_POST['stok'])) ? antiInjection($_POST['stok']) : 0 ;
@@ -94,14 +97,14 @@
 			break;
 		case 'add_stok':
 			try {
-				$stok = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT `persediaan` FROM `data_barang` WHERE `id_barang` = '$id';"))['persediaan'];
-				$stok += $persediaan;
+				$stok = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT `stok` FROM `data_barang` WHERE `id_barang` = '$id';"))['stok'];
+				$stok += $stok;
 				// Data Barang Masuk
-				mysqli_query($koneksi, "INSERT INTO `data_barang_masuk` (`tanggal`, `id_barang`, `jumlah`, `harga_beli`) VALUES ('" . date('Y-m-d') . "', '$id', '$persediaan', '$hargaBeli')") or die ($koneksi);
-				$transaksiKeluar = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM `data_barang_masuk` WHERE `tanggal` = '" . date('Y-m-d') . "%' AND `id_barang` = '$id' AND `jumlah` = '$persediaan' AND `harga_beli` = '$hargaBeli' "));
-				mysqli_query($koneksi, "INSERT INTO `data_laporan_arus_kas`(`jenis_transaksi`, `id_no_transaksi`, `tgl_transaksi`, `keterangan`, `kuantitas`, `harga`) VALUES ('keluar', '$transaksiKeluar[id_barang_masuk]', '$transaksiKeluar[tanggal]', 'Pembelian tanggal $transaksiKeluar[tanggal]', '$transaksiKeluar[jumlah]', '$transaksiKeluar[harga_beli]')") or die ($koneksi);
+				mysqli_query($koneksi, "INSERT INTO `data_barang_masuk` (`tanggal`, `id_barang`, `jumlah`, `harga_beli`) VALUES ('" . date('Y-m-d') . "', '$id', '$stok', '$hargaBeli')") or die ($koneksi);
+				$transaksiKeluar = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM `data_barang_masuk` WHERE `tanggal` = '" . date('Y-m-d') . "%' AND `id_barang` = '$id' AND `jumlah` = '$stok' AND `harga_beli` = '$hargaBeli' "));
+				//mysqli_query($koneksi, "INSERT INTO `data_laporan_arus_kas`(`jenis_transaksi`, `id_no_transaksi`, `tgl_transaksi`, `keterangan`, `kuantitas`, `harga`) VALUES ('keluar', '$transaksiKeluar[id_barang_masuk]', '$transaksiKeluar[tanggal]', 'Pembelian tanggal $transaksiKeluar[tanggal]', '$transaksiKeluar[jumlah]', '$transaksiKeluar[harga_beli]')") or die ($koneksi);
 				// Data Barang
-				mysqli_query($koneksi, "UPDATE `data_barang` SET `persediaan` = '$stok' WHERE `id_barang` = '$id';") or die ($koneksi);
+				mysqli_query($koneksi, "UPDATE `data_barang` SET `stok` = '$stok' WHERE `id_barang` = '$id';") or die ($koneksi);
 				array_push($messages, array("success", "Data berhasil diubah..!"));
 			} catch (Exception $e) {
 				array_push($messages, array("danger", "Data gagal diubah..!"));
