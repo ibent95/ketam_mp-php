@@ -28,13 +28,13 @@
 
 	$i = 1;
 
-	//// reference the Dompdf namespace
-	//use Dompdf\Dompdf;
+	// reference the Dompdf namespace
+	use Dompdf\Dompdf;
 
-	//// instantiate and use the dompdf class
-	//$dompdf = new Dompdf();
+	// instantiate and use the dompdf class
+	$dompdf = new Dompdf();
 
-	//ob_start();
+	ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -104,20 +104,20 @@
 
 <?php
 
-	//$html = ob_get_contents(); //Proses untuk mengambil hasil dari OB..
-	//ob_end_clean();
+	$html = ob_get_contents(); //Proses untuk mengambil hasil dari OB..
+	ob_end_clean();
 
-	//// (Optional) Setup the paper size and orientation
-	//$dompdf->setPaper('A4', 'landscape');
-	//// $dompdf->setPaper(array(0, 0, 550, 300));
+	// (Optional) Setup the paper size and orientation
+	$dompdf->setPaper('A4', 'landscape');
+	// $dompdf->setPaper(array(0, 0, 550, 300));
 
-	//$dompdf->loadHtml(utf8_encode($html));
+	$dompdf->loadHtml(utf8_encode($html));
 
-	//// Render the HTML as PDF
-	//$dompdf->render();
+	// Render the HTML as PDF
+	$dompdf->render();
 
-	//// Output the generated PDF to Browser
-	//$dompdf->stream("Laporan_Barang_Masuk_Keluar_" . date('Y-m-d') . ".pdf", array("Attachment" => 0));
+	// Output the generated PDF to Browser
+	$dompdf->stream("Laporan_Barang_Masuk_Keluar_" . date('Y-m-d') . ".pdf", array("Attachment" => 0));
 
-	//// exit(0);
+	// exit(0);
 ?>
