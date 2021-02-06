@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 16, 2020 at 01:17 AM
+-- Generation Time: Feb 06, 2021 at 09:24 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -57,7 +57,7 @@ INSERT INTO `data_barang` (`id_barang`, `id_kategori`, `id_toko`, `id_merk`, `na
 (2, 2, 2, 2, 'Kerel Rei R-384', 1, 1000, 10000, 1000, 0, '0000-00-00', '0000-00-00', '', '<p>Tas Kerel&nbsp;Rei tipe&nbsp;R-384...</p>\r\n'),
 (3, 1, 1, 2, 'Tenda (2 Orang)', 2, 25000, 320000, 3000, 0, '0000-00-00', '0000-00-00', '', '<p>Tenda berkapasitas 2 orang...</p>\r\n'),
 (4, 2, 3, 1, 'Kerel Eiger A775', 2, 100000, 250000, 10000, 0, '0000-00-00', '0000-00-00', '', '<p>Kerel Eiger A775...</p>\r\n'),
-(5, 6, 4, 3, 'Sepatu Consina A', 2, 10000, 325000, 7000, NULL, NULL, NULL, NULL, '<p>vsdvsd klcl jkj JBFKww bfcjwhsb sdvbaj&nbsp;</p>\r\n');
+(5, 6, 4, 3, 'Sepatu Consina A', 4, 10000, 325000, 7000, NULL, NULL, NULL, NULL, '<p>vsdvsd klcl jkj JBFKww bfcjwhsb sdvbaj&nbsp;</p>\r\n');
 
 -- --------------------------------------------------------
 
@@ -84,6 +84,30 @@ INSERT INTO `data_barang_foto` (`id_barang_foto`, `id_barang`, `foto`) VALUES
 (4, 5, 'assets/img/barang/ceddedb3ddfbb17899b6aa618f4bd787be4f8069.png'),
 (5, 5, 'assets/img/barang/b7a71f3db87cff5f9eb30f1bfdb263cf3672b25e.png'),
 (6, 5, 'assets/img/barang/2d8f97389cada89e73202cbd3b93b0b30ae482d3.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_barang_masuk`
+--
+
+DROP TABLE IF EXISTS `data_barang_masuk`;
+CREATE TABLE IF NOT EXISTS `data_barang_masuk` (
+  `id_barang_masuk` int(11) NOT NULL AUTO_INCREMENT,
+  `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_barang` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `harga_beli` int(11) NOT NULL,
+  PRIMARY KEY (`id_barang_masuk`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_barang_masuk`
+--
+
+INSERT INTO `data_barang_masuk` (`id_barang_masuk`, `tanggal`, `id_barang`, `jumlah`, `harga_beli`) VALUES
+(1, '2021-02-06 00:00:00', 5, 4, 1900000),
+(2, '2021-02-06 00:00:00', 5, 4, 1900000);
 
 -- --------------------------------------------------------
 
@@ -131,7 +155,14 @@ CREATE TABLE IF NOT EXISTS `data_informasi_tambahan` (
   `keterangan` text NOT NULL,
   `harga` int(11) NOT NULL,
   PRIMARY KEY (`id_informasi_tambahan`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_informasi_tambahan`
+--
+
+INSERT INTO `data_informasi_tambahan` (`id_informasi_tambahan`, `id_toko`, `keterangan`, `harga`) VALUES
+(1, 4, 'Sobek', 10000);
 
 -- --------------------------------------------------------
 
@@ -256,19 +287,21 @@ CREATE TABLE IF NOT EXISTS `data_pelanggan` (
   `alamat` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL,
-  `foto_ktp` varchar(255) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `foto_ktp` varchar(255) DEFAULT NULL,
   `status_akun` enum('aktif','blokir') NOT NULL,
   `user_token` varchar(32) NOT NULL,
   PRIMARY KEY (`id_pelanggan`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_pelanggan`
 --
 
 INSERT INTO `data_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `email`, `telepon`, `alamat`, `username`, `password`, `foto`, `foto_ktp`, `status_akun`, `user_token`) VALUES
-(1, 'Pelanggan', 'ibnu.tuharea@stimednp.ac.id', '081xxx', 'Jl. Bla bla bla', 'pelanggan', '7f78f06d2d1262a0a222ca9834b15d9d', '', '', 'aktif', '');
+(1, 'Pelanggan', 'ibnu.tuharea@stimednp.ac.id', '081xxx', 'Jl. Bla bla bla', 'pelanggan', '7f78f06d2d1262a0a222ca9834b15d9d', '', '', 'aktif', ''),
+(2, 'Ibnu', 'ibent95@yahoo.co.id', '081xxx', 'Jl. Daeng Tata 1. BTN. Tabaria Blok G8 No. 6', 'ibnu', '195ace8d50de761419faf08845304398', '', NULL, 'aktif', 'ir1sl9zewypt2f8un0h6moj4b'),
+(7, 'K', 'ibent95tuny@gmail.com', '081', 'O', 'O', 'd95679752134a2d9eb61dbd7b91c4bcc', '', '', 'blokir', '5rs9tyd0u7vbj2_xo83fi4zpg');
 
 -- --------------------------------------------------------
 
@@ -307,29 +340,31 @@ DROP TABLE IF EXISTS `data_toko`;
 CREATE TABLE IF NOT EXISTS `data_toko` (
   `id_toko` int(11) NOT NULL AUTO_INCREMENT,
   `nama_toko` varchar(50) NOT NULL,
-  `nama_pemilik` varchar(50) NOT NULL,
+  `nama_pemilik` varchar(50) DEFAULT NULL,
   `alamat` varchar(255) NOT NULL,
   `telepon` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `foto` varchar(255) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `deskripsi_toko` text NOT NULL,
+  `deskripsi_toko` text,
   `status_akun` enum('aktif','non_aktif','blokir') NOT NULL DEFAULT 'non_aktif',
+  `user_token` varchar(32) NOT NULL,
   PRIMARY KEY (`id_toko`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_toko`
 --
 
-INSERT INTO `data_toko` (`id_toko`, `nama_toko`, `nama_pemilik`, `alamat`, `telepon`, `email`, `foto`, `username`, `password`, `deskripsi_toko`, `status_akun`) VALUES
-(1, 'Akbar Rent', 'Akbar Mulyadi', 'Jakarta', '081xxxxxxxxx', 'akbar.mulyadi@gmail.com', 'assets/img/toko/394ce2365634370e390f49a1f0fca4276ccaa55c.png', 'akbar', '4f033a0a2bf2fe0b68800a3079545cd1', 'Blablabla', 'blokir'),
-(2, 'Seno Rent', 'Suseno', 'Surabaya, Jawa Timur', '0821xxxxxxxx', 'seno.rent@gmail.com', 'assets/img/toko/e87ef67ace1bbd8833c2f66acdcd2753f7e7d508.jpeg', '', '21232f297a57a5a743894a0e4a801fc3', 'Seno Rent...', 'non_aktif'),
-(3, 'Reza Outdor Equipment Rent', 'Muhammad Reza Anugrah', 'Gowa, Sulawesi Selatan.', '082195005513', 'rezamuhmmmd@gmail.com', 'assets/img/toko/e87ef67ace1bbd8833c2f66acdcd2753f7e7d508.jpeg', 'reza', 'bb98b1d0b523d5e783f931550d7702b6', 'Reza Outdor Equipment Rent punya nya Muhammad Reza Anugrah dkk...', 'aktif'),
-(4, 'Coba 1', 'Coba 1', 'Coba 1', '081xxxxxxxxx', 'coba1@gmail.com', '', 'toko', 'bbb48314e5e6ee68d2d8bc1364b8599b', 'Coba 1...', 'aktif'),
-(5, 'Coba 2', 'Coba 2', 'Coba 2', '081xxxxxxxxx', 'coba2@gmail.com', '', 'coba2', '17146a464726f22dc5ff649fca94761e', 'Coba 2', 'non_aktif'),
-(6, 'Coba 3', 'Coba 3', 'Coba 3', '081xxxxxxxxx', 'coba3@gmail.com', '', 'coba3', 'fb1b8e85a800886adeadb7cccf12a524', 'Coba 3...', 'non_aktif');
+INSERT INTO `data_toko` (`id_toko`, `nama_toko`, `nama_pemilik`, `alamat`, `telepon`, `email`, `foto`, `username`, `password`, `deskripsi_toko`, `status_akun`, `user_token`) VALUES
+(1, 'Akbar Rent', 'Akbar Mulyadi', 'Jakarta', '081xxxxxxxxx', 'akbar.mulyadi@gmail.com', 'assets/img/toko/394ce2365634370e390f49a1f0fca4276ccaa55c.png', 'akbar', '4f033a0a2bf2fe0b68800a3079545cd1', 'Blablabla', 'blokir', ''),
+(2, 'Seno Rent', 'Suseno', 'Surabaya, Jawa Timur', '0821xxxxxxxx', 'seno.rent@gmail.com', 'assets/img/toko/e87ef67ace1bbd8833c2f66acdcd2753f7e7d508.jpeg', '', '21232f297a57a5a743894a0e4a801fc3', 'Seno Rent...', 'non_aktif', ''),
+(3, 'Reza Outdor Equipment Rent', 'Muhammad Reza Anugrah', 'Gowa, Sulawesi Selatan.', '082195005513', 'rezamuhmmmd@gmail.com', 'assets/img/toko/e87ef67ace1bbd8833c2f66acdcd2753f7e7d508.jpeg', 'reza', 'bb98b1d0b523d5e783f931550d7702b6', 'Reza Outdor Equipment Rent punya nya Muhammad Reza Anugrah dkk...', 'aktif', ''),
+(4, 'Coba 1', 'Coba 1', 'Coba 1', '081xxxxxxxxx', 'coba1@gmail.com', '', 'toko', 'bbb48314e5e6ee68d2d8bc1364b8599b', 'Coba 1...', 'aktif', ''),
+(5, 'Coba 2', 'Coba 2', 'Coba 2', '081xxxxxxxxx', 'coba2@gmail.com', '', 'coba2', '17146a464726f22dc5ff649fca94761e', 'Coba 2', 'non_aktif', ''),
+(6, 'Coba 3', 'Coba 3', 'Coba 3', '081xxxxxxxxx', 'coba3@gmail.com', '', 'coba3', 'fb1b8e85a800886adeadb7cccf12a524', 'Coba 3...', 'non_aktif', ''),
+(7, 'Ibnu', NULL, 'Jl. Daeng Tata 1. BTN. Tabaria Blok G8 No. 6', '081xxx', 'ibent95tuny@gmail.com', '', 'ibnu', '195ace8d50de761419faf08845304398', NULL, 'aktif', 'yws1go5xplet0h94rfca_zkqd');
 
 -- --------------------------------------------------------
 
@@ -368,15 +403,15 @@ CREATE TABLE IF NOT EXISTS `data_transaksi` (
 --
 
 INSERT INTO `data_transaksi` (`id_transaksi`, `no_transaksi`, `tgl_transaksi`, `id_pelanggan`, `no_telp`, `keterangan`, `diantarkan`, `tgl_pengantaran`, `alamat_pengantaran`, `longlat`, `id_toko`, `status_transaksi`, `tgl_awal_transaksi`, `tgl_akhir_transaksi`, `jumlah_hari`, `status_pengembalian`, `tgl_pengembalian`, `toko_check`, `pelanggan_check`, `rating`, `ulasan`) VALUES
-(16, 'TR--20201117401194117', '2020-11-17', 1, '081xxx', 'vfldvd', 'tidak', '2020-11-18', 'sd', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-11-22', 'selesai', 'sudah', NULL, NULL),
-(17, 'TR-20201201982221846', '2020-12-01', 1, '081xxx', '', 'tidak', '2020-12-02', 'cdsc', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
-(18, 'TR-20201202417004921', '2020-12-02', 1, '081xxx', '', 'tidak', '2020-12-01', 's', '-5.150788706800275,119.43978224141526', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
-(19, 'TR-20201202103011553', '2020-12-02', 1, '081xxx', '', 'tidak', '2020-12-03', 'cds', '-5.146190491462918,119.44175389137163', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
-(20, 'TR-20201202817224421', '2020-12-02', 1, '081xxx', 'dcscds', 'tidak', '2020-12-24', 'dc', '-5.15364286974775,119.438390784598', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 5, 'fesewf'),
-(21, 'TR-20201202416233006', '2020-12-02', 1, '081xxx', 'ssc sc sccsc scs', 'tidak', '2020-12-02', 'cs', '-5.155330519260542,119.4404498036828', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 3, 'KKK'),
-(22, 'TR-20201202825233557', '2020-12-02', 1, '081xxx', 'scs', 'tidak', '2020-12-18', 'cs', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
-(23, 'TR-20201202016233748', '2020-12-02', 1, '081xxx', '', 'tidak', '2020-12-26', 'scs', '-5.150852836691099,119.43675671718003', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 5, 'cds'),
-(24, 'TR-20201207986223932', '2020-12-07', 1, '081xxx', 'dscs', 'tidak', '2020-12-08', 'Pajai', '-5.153474244602384,119.43696097943146', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 5, 'Coba lagi');
+(16, 'TR--20201117401194117', '2020-11-17', 1, '081xxx', 'vfldvd', 'ya', '2020-11-18', 'sd', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-11-22', 'selesai', 'sudah', NULL, NULL),
+(17, 'TR-20201201982221846', '2020-12-01', 1, '081xxx', '', 'ya', '2020-12-02', 'cdsc', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
+(18, 'TR-20201202417004921', '2020-12-02', 1, '081xxx', '', 'ya', '2020-12-01', 's', '-5.150788706800275,119.43978224141526', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
+(19, 'TR-20201202103011553', '2020-12-02', 1, '081xxx', '', 'ya', '2020-12-03', 'cds', '-5.146190491462918,119.44175389137163', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
+(20, 'TR-20201202817224421', '2020-12-02', 1, '081xxx', 'dcscds', 'ya', '2020-12-24', 'dc', '-5.15364286974775,119.438390784598', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 5, 'fesewf'),
+(21, 'TR-20201202416233006', '2020-12-02', 1, '081xxx', 'ssc sc sccsc scs', 'ya', '2020-12-02', 'cs', '-5.155330519260542,119.4404498036828', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', 3, 'KKK'),
+(22, 'TR-20201202825233557', '2020-12-02', 1, '081xxx', 'scs', 'ya', '2020-12-18', 'cs', '-5.147665,119.432732', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-08', 'selesai', 'sudah', NULL, NULL),
+(23, 'TR-20201202016233748', '2020-12-02', 1, '081xxx', '', 'ya', '2020-12-26', 'scs', '-5.150852836691099,119.43675671718003', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-20', 'selesai', 'sudah', 5, 'cds'),
+(24, 'TR-20201207986223932', '2020-12-07', 1, '081xxx', 'dscs', 'ya', '2020-12-08', 'Pajai', '-5.153474244602384,119.43696097943146', 4, 'selesai', '2020-10-25', '2020-10-30', 5, 'sudah', '2020-12-20', 'selesai', 'sudah', 5, 'Coba lagi');
 
 -- --------------------------------------------------------
 
@@ -436,11 +471,11 @@ CREATE TABLE IF NOT EXISTS `data_transaksi_tambah` (
   `id_transaksi_tambah` int(11) NOT NULL AUTO_INCREMENT,
   `id_transaksi` int(11) NOT NULL,
   `no_transaksi` varchar(32) NOT NULL,
-  `info_transaksi` enum('ongkir','denda') NOT NULL DEFAULT 'ongkir',
+  `info_transaksi` enum('ongkir','denda','lain') NOT NULL DEFAULT 'ongkir',
   `harga` int(11) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   PRIMARY KEY (`id_transaksi_tambah`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_transaksi_tambah`
@@ -470,7 +505,13 @@ INSERT INTO `data_transaksi_tambah` (`id_transaksi_tambah`, `id_transaksi`, `no_
 (21, 21, 'TR-20201202416233006', 'ongkir', 200000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202416233006.'),
 (22, 22, 'TR-20201202825233557', 'ongkir', 20000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202825233557.'),
 (23, 23, 'TR-20201202016233748', 'ongkir', 20000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201202016233748.'),
-(24, 24, 'TR-20201207986223932', 'ongkir', 20000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201207986223932.');
+(24, 24, 'TR-20201207986223932', 'ongkir', 20000, 'Biaya pengantaran untuk transaksi dengan No. TR-20201207986223932.'),
+(25, 24, 'TR-20201207986223932', 'denda', 1000, 'Hahahah'),
+(26, 24, 'TR-20201207986223932', 'denda', 1000, 'Hahahah'),
+(27, 24, 'TR-20201207986223932', 'denda', 1000, 'Hahahah'),
+(28, 24, 'TR-20201207986223932', 'lain', 20000, 'dsklfksl'),
+(29, 23, 'TR-20201202016233748', 'denda', 12000, 'jkjbk'),
+(30, 23, 'TR-20201202016233748', 'lain', 30000, 'hjkgkjb');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
