@@ -17,7 +17,7 @@
 						<div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
 							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Outdor Equipment Rental</h2>
 							<p data-animation="fadeInUp" data-delay="700ms">Kami Menyediakan Berbagai Macam Alat Outdor</p>
-							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Alat</a>
+							<a href=login.php class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Alat</a>
 						</div>
 					</div>
 				</div>
