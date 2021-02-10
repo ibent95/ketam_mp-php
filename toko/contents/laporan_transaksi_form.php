@@ -50,22 +50,12 @@
                 </div>
                 
                 <div class="card-body">
-                    <?php getNotifikasi(); ?>
-                    <form 
-                        class="form-horizontal" 
-                        action="laporan_transaksi.php"
-                        method="POST"
-                        enctype="multipart/form-data"
-                    >
+                    <?= getNotifikasi() ?>
+                    <form class="form-horizontal" action="laporan_transaksi.php"method="POST"enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama_barang" class="col-md-3 control-label">Nama Barang</label>
                             <div class="col-md-12">
-                                <input 
-                                    type="text" 
-                                    class="form-control input-rounded input-focus"
-                                    name="nama_barang" 
-                                    placeholder="Masukan Nama Barang..."
-                                    id="nama_barang"
+                                <input type="text" class="form-control input-rounded input-focus" name="nama_barang" placeholder="Masukan Nama Barang..." id="nama_barang"
                                     <?php if ($action == 'ubah'): ?>
                                         value="<?php echo $barang['nama_barang']; ?>"
                                     <?php endif ?>
@@ -79,8 +69,7 @@
                                 <select class="form-control input-rounded input-focus" name="id_kategori" id="id_kategori">
                                     <option value="">-- Silahakan Pilih Kategori --</option>
                                     <?php foreach ($kategoriAll as $data): ?>
-                                        <option 
-                                            value="<?php echo $data['id']; ?>"
+                                        <option value="<?php echo $data['id']; ?>"
                                             <?php if ($action == 'ubah'): ?>
                                                 <?php if ($barang['id_kategori'] == $data['id']): ?>
                                                     selected
@@ -97,13 +86,7 @@
                         <div class="form-group">
                             <label for="harga" class="col-md-3 control-label">Harga (Rp)</label>
                             <div class="col-md-12">
-                                <input 
-                                    type="number" 
-                                    min="0"
-                                    class="form-control input-rounded input-focus"
-                                    name="harga" 
-                                    placeholder="Masukan Harga..."
-                                    id="harga"
+                                <input type="number" min="0" class="form-control input-rounded input-focus" name="harga" placeholder="Masukan Harga..." id="harga"
                                     <?php if ($action == 'ubah'): ?>
                                         value="<?php echo $barang['harga']; ?>"
                                     <?php endif ?>

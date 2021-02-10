@@ -98,7 +98,7 @@
 
 					<?= getNotifikasi() ?>
 
-					<form action="laporan_transaksi.php" method="POST">
+					<form action="laporan_transaksi.php" method="POST" enctype="multipart/form-data" target="_blank">
 						<div class="form-group row">
 							<div class="col-md-3">
 								<label class="col-form-label" for="">Tanggal Awal</label>
@@ -113,10 +113,8 @@
 								<select class="form-control input-rounded input-focus form-control-lg" name="id_kategori" id="id_kategori">
 									<option value="">-- Silahakan Pilih Kategori --</option>
 									<?php foreach ($kategoriAll as $data): ?>
-										<option 
-											value="<?php echo $data['id_kategori']; ?>"
-										>
-											<?php echo $data['nama_kategori']; ?>
+										<option value="<?= $data['id_kategori'] ?>">
+											<?= $data['nama_kategori'] ?>
 										</option>
 									<?php endforeach ?>
 								</select>

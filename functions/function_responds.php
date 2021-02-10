@@ -52,12 +52,12 @@
 					<option value=''>-- Silahakan Pilih Kategori Terlebih Dahulu --</option>
 				";
 			} else {
-				// $respond .= "
-					// <option value=''>-- Silahakan Pilih Barang --</option>
-				// ";
+				$respond .= "
+					<option value=''>-- Silahkan Pilih Barang --</option>
+				";
 				while ($data = mysqli_fetch_array($result, MYSQLI_BOTH)) {
 					$respond .= "
-						<option value='$data[id]'>$data[nama_barang]</option>
+						<option value='$data[id_barang]'>$data[nama_barang]</option>
 					";
 				}
 			}
