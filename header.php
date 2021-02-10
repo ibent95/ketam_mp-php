@@ -1,33 +1,31 @@
 <!-- ##### Header Area Start ##### -->
 <header class="header-area">
 	<!-- Top Header Area -->
-	<!-- <div class="top-header-area">
+	<div class="top-header-area">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center justify-content-between">
 				<div class="col-12 col-sm-6">
 					<div class="breaking-news">
 						<div id="breakingNewsTicker" class="ticker">
 							<ul>
-								<li><a href="#">Hello World!</a></li>
-								<li><a href="#">Welcome to Colorlib Family.</a></li>
-								<li><a href="#">Hello Delicious!</a></li>
+								<li><a href="#">Hello Friend..!</a></li>
+								<li><a href="#">Welcome to Equipment Rentals App..!</a></li>
+								<li><a href="#">Silahkan Jelajahi Toko Kami..!</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div class="col-12 col-sm-6">
 					<div class="top-social-info text-right">
-						<a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+						<a href="https://id.pinterest.com/"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+						<a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<a href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+						<a href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div> 
 
 	<!-- Navbar Area -->
 	<div class="delicious-main-menu">

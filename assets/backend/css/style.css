@@ -77,6 +77,10 @@
 
 */
 
+.element.style {
+    background: #fff;
+}
+
 .preloader {
     width: 100%;
     height: 100%;
@@ -8344,3 +8348,4 @@ tfoot tr td {
     text-align: right;
     font-weight: bold;
 }
+

@@ -10,7 +10,7 @@
 <section class="hero-area">
 	<div class="hero-slides owl-carousel">
 		<!-- Single Hero Slide -->
-		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/1.png);">
+		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/1.jpg);">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -25,13 +25,13 @@
 		</div>
 
 		<!-- Single Hero Slide -->
-		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/2.png);">
+		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/2.jpg);">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
 						<div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
 							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Outdor Equipment Rental</h2>
-							<p data-animation="fadeInUp" data-delay="700ms"Kami Menyediakan Berbagai Macam Alat Outdor</p>
+							<p data-animation="fadeInUp" data-delay="700ms">Kami Menyediakan Berbagai Macam Alat Outdor</p>
 							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Alat</a>
 						</div>
 					</div>
@@ -40,7 +40,7 @@
 		</div>
 
 		<!-- Single Hero Slide -->
-		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/3.png);">
+		<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/3.jpg);">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -54,6 +54,36 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- <div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/4.jpg);">
+			<div class="container h-100">
+				<div class="row h-100 align-items-center">
+					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
+						<div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
+							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Outdor Equipment Rental</h2>
+							<p data-animation="fadeInUp" data-delay="700ms">Kami Menyediakan Berbagai Macam Alat Outdor.</p>
+							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Alat</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="single-hero-slide bg-img" style="background-image: url(assets/frontend/img/bg-img/5.jpg);">
+			<div class="container h-100">
+				<div class="row h-100 align-items-center">
+					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
+						<div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
+							<h2 data-animation="fadeInUp" data-delay="300ms">Selamat Datang Di Outdor Equipment Rental</h2>
+							<p data-animation="fadeInUp" data-delay="700ms">Kami Menyediakan Berbagai Macam Alat Outdor.</p>
+							<a href="?content=daftar_barang" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">Lihat Alat</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
 </section>
 <!-- ##### Hero Area End ##### -->
 
@@ -66,7 +96,7 @@
 <!-- ##### Top Catagory Area End ##### -->
 
 <!-- ##### Best Receipe Area Start ##### -->
-<section class="best-receipe-area">
+<!-- <section class="best-receipe-area">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -129,8 +159,8 @@
 			</div>
 			<div class="col-md-10">
 				<div class="row" id="product">
-					<!-- Single Best Receipe Area -->
-					<?php foreach ($barangAll AS $data) : ?>
+					 Single Best Receipe Area -->
+					<!-- <?php foreach ($barangAll AS $data) : ?>
 						<div class="col-md-4">
 							<div class="single-best-receipe-area mb-30">
 								<a href="<?php echo $csv::$URL_BASE; ?>/?content=data_barang&id=<?php echo $data['id_barang']; ?>">
@@ -145,10 +175,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</div> -->
+<!-- </section>  -->
 <!-- ##### Best Receipe Area End ##### -->
-<script>
+<!-- <script>
     function filter_barang() {
 		// var kata_kunci = $('input#kata_kunci').val();
 		var id_kategori = $('select#id_kategori').val();
@@ -180,4 +210,4 @@
             }
 		});
 	}
-</script>
+</script> -->
