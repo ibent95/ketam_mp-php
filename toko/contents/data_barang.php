@@ -218,17 +218,17 @@
 												>
 													Discount
 												</a> -->
-												<button class="btn btn-info btn-sm" data-toggle="modal"  data-target="#modal_discount_item" data-id="<?php echo $data['id_barang']; ?>" data-content="<?php echo $content; ?>" id="btn_discount_item">
+												<!-- <button class="btn btn-info btn-sm" data-toggle="modal"  data-target="#modal_discount_item" data-id="<?php echo $data['id_barang']; ?>" data-content="<?php echo $content; ?>" id="btn_discount_item">
 													<i class="fas fa-percentage"></i>
 													Discount
-												</button>
-												<a
+												</button> -->
+												<!-- <a
 													class="btn btn-warning btn-sm"
 													href="?content=data_barang_masuk_form&action=tambah_persediaan&id=<?php echo $data['id_barang']; ?>"
 												>
 													<i class="fa fa-download"></i>
 													Masuk
-												</a>
+												</a> -->
 												<a
 													class="btn btn-primary btn-sm"
 													href="?content=data_barang_form&action=ubah&id=<?php echo $data['id_barang']; ?>"

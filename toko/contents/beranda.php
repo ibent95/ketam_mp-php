@@ -21,8 +21,8 @@
     <?php getNotifikasi(); ?> 
 
     <!-- Start Page Content -->
-     <div><center><h1>PENYEWAAN ALAT OUTDOR</h1></center></div>
-    <div class="row">
+     <!-- <center><img src="logo1.png" width="400px" height="400" ></a></center> -->
+    <!-- <div class="row">
         <div class="col-md-3">
             <div class="card p-30">
                 <div class="media">
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>  --> 
 
     <!--<div>
         <center>
