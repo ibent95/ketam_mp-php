@@ -1,5 +1,5 @@
 <?php
-	
+
 	// Data Transaksi
 	function getTransaksiAll() {
 		global $koneksi;
@@ -133,12 +133,12 @@
 		} elseif ($sub == 'tunggu') { // 'not_selesai_batal'
 			$sql .= "OR data_transaksi.status_transaksi LIKE '%proses' ";
 		}
-		
+
 		$sql .= "ORDER BY data_transaksi.id_transaksi DESC ";
 		$data = mysqli_query($koneksi, $sql) or die($koneksi);
 		return $data;
 	}
-	
+
 	function getTransaksiSubJoinLimitByIdPelanggan($page, $recordCount = 12, $sub = 'pending', $idPelanggan, $pelangganCheck = NULL) {
 		global $koneksi;
 		$limit = ($page * $recordCount) - $recordCount;
@@ -146,8 +146,8 @@
 		$sql = "SELECT * FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelanggan ";
 		// if ($sub == 'proses' || $sub == 'selesai') {
 		// 	$sql .= "
-		// 		INNER JOIN `data_teknisi` 
-		// 		ON data_transaksi.id_teknisi = data_teknisi.id 
+		// 		INNER JOIN `data_teknisi`
+		// 		ON data_transaksi.id_teknisi = data_teknisi.id
 		// 	";
 		// }
 
@@ -169,8 +169,8 @@
 		$sql = "SELECT * FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelanggan ";
 		// if ($sub == 'proses' || $sub == 'selesai') {
 		// 	$sql .= "
-		// 		INNER JOIN `data_teknisi` 
-		// 		ON data_transaksi.id_teknisi = data_teknisi.id 
+		// 		INNER JOIN `data_teknisi`
+		// 		ON data_transaksi.id_teknisi = data_teknisi.id
 		// 	";
 		// }
 		$sql .= "WHERE data_transaksi.id_pelanggan = '$idPelanggan' AND data_transaksi.status_transaksi = '$sub' ORDER BY data_transaksi.id_transaksi DESC ";
@@ -305,7 +305,7 @@
 	function searchTransaksiByIdTokoKeyWord($keyWord, $idToko, $status = '') {
 		global $koneksi;
 		$sql = "";
-		if ($status == 'tunggu' | $status == 'pending' | $status == 'batal' | $status == 'tolak') { 
+		if ($status == 'tunggu' | $status == 'pending' | $status == 'batal' | $status == 'tolak') {
 			$sql = "SELECT data_transaksi.id_transaksi, data_transaksi.tanggal_pesan, data_transaksi.id_pelanggan, data_pelanggan.nama, data_pelanggan.alamat, data_transaksi.id_kategori, data_transaksi.tanggal_kerja, data_transaksi.keluhan, data_transaksi.toko_check, data_transaksi.status_transaksi FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelangganINNER JOIN `data_layanan_kategori` ON data_transaksi.id_kategori = data_layanan_kategori.id WHERE data_transaksi.status_transaksi = '$status' AND ((data_transaksi.tanggal_pesan LIKE '$keyWord%' OR data_transaksi.tanggal_kerja LIKE '$keyWord%' OR data_transaksi.keluhan LIKE '%$keyWord%') OR (data_pelanggan.nama LIKE '$keyWord%' OR data_pelanggan.username LIKE '$keyWord%' OR data_pelanggan.alamat LIKE '$keyWord%') OR (data_layanan_kategori.nama_kategori_layanan LIKE '$keyWord%'))";
 		} else {
 			$sql = "SELECT data_transaksi.id_transaksi, data_transaksi.tanggal_pesan, data_transaksi.id_pelanggan, data_pelanggan.nama, data_pelanggan.alamat, data_transaksi.id_kategori, data_transaksi.tanggal_kerja, data_transaksi.keluhan, data_transaksi.id_teknisi, data_toko.nama, data_toko.alamat, data_transaksi.teknisi_check, data_transaksi.status_transaksi FROM `data_transaksi` INNER JOIN `data_pelanggan` ON data_transaksi.id_pelanggan = data_pelanggan.id_pelangganINNER JOIN `data_layanan_kategori` ON data_transaksi.id_kategori = data_layanan_kategori.id_kategori INNER JOIN `data_toko` ON data_transaksi.id_toko = data_toko.idWHERE data_transaksi.id_teknisi = '$idToko' AND data_transaksi.status_transaksi = '$status' AND ((data_transaksi.tanggal_pesan LIKE '$keyWord%' OR data_transaksi.tanggal_kerja LIKE '$keyWord%' OR data_transaksi.keluhan LIKE '%$keyWord%') OR (data_pelanggan.nama_lengkap LIKE '$keyWord%' OR data_pelanggan.username LIKE '$keyWord%' OR data_pelanggan.alamat LIKE '$keyWord%') OR (data_toko.nama_lengkap LIKE '$keyWord%' OR data_toko.username LIKE '$keyWord%' OR data_teknisi.alamat LIKE '$keyWord%') OR (data_layanan_kategori.nama_kategori_layanan LIKE '$keyWord%'))";
