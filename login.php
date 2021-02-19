@@ -13,16 +13,16 @@
 
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="assets/img/fortinusa.ico">
-        
+
         <title>Ela - Bootstrap Admin Dashboard Template</title>
-        
+
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
-        
+
         <!-- Custom CSS -->
         <link rel="stylesheet" href="assets/backend/css/helper.css">
         <link rel="stylesheet" href="assets/backend/css/style.css">
-        
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
         <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
         <!-- Preloader - style you can find in spinners.css -->
         <div class="preloader">
             <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> 
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
             </svg>
         </div>
 
@@ -53,25 +53,25 @@
 
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs nav-justified customtab" role="tablist">
-                                        <li class="nav-item"> 
+                                        <!--<li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#pelanggan" role="tab">
                                                 <span class="hidden-sm-up">
                                                     <i class="ti-home"></i>
-                                                </span> 
+                                                </span>
                                                 <span class="hidden-xs-down">
                                                     Pelanggan
                                                 </span>
-                                            </a> 
-                                        </li>
-                                        <li class="nav-item"> 
+                                            </a>
+                                        </li>-->
+                                        <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#toko" role="tab">
                                                 <span class="hidden-sm-up">
                                                     <i class="ti-user"></i>
-                                                </span> 
+                                                </span>
                                                 <span class="hidden-xs-down">
                                                     Toko
                                                 </span>
-                                            </a> 
+                                            </a>
                                         </li>
                                     </ul>
 
@@ -97,7 +97,7 @@
 
                                                 </div> -->
                                                 <button type="submit" class="btn btn-primary btn-flat m-b-15 m-t-15">Masuk</button>
-                                                <div class="register-link m-t-15 text-center">  
+                                                <div class="register-link m-t-15 text-center">
                                                     Tidak punya akun ? Silahkan <a href="register.php"> daftar di sini..!</a> <br>
                                                     Pengguna lain ? Silahkan <a href="login_pengguna_lain.php"> masuk di sini..!</a>
                                                 </div>
@@ -124,7 +124,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
@@ -141,7 +141,7 @@
             </div>
         </div>
         <!-- End Wrapper -->
-        
+
         <!-- All Jquery -->
         <script src="assets/lib/jquery/jquery.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->

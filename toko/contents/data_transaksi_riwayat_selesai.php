@@ -52,7 +52,7 @@
 							<p>
 								<a class="btn btn-primary float-left" href="?content=transaksi_form&action=tambah">
 									Tambah Data
-								</a>    
+								</a>
 							</p>
 						</div>
 					</div> -->
@@ -61,65 +61,65 @@
 							<p class="mb-2">
 								<!-- <div class="form-inline" id="record_form" >
 									<div class="form-group form-group-md">
-										<label class="control-label" for="record_per_page">Record per Page :&nbsp; </label>         
-										<select class="form-control" id="record_per_page" onchange="refreshPageForChangeRecordCount('<?php //echo $_GET['content']; 
+										<label class="control-label" for="record_per_page">Record per Page :&nbsp; </label>
+										<select class="form-control" id="record_per_page" onchange="refreshPageForChangeRecordCount('<?php //echo $_GET['content'];
 																																		?>');">
-											<option 
-												value="3" 
-												<?php //if (class_static_value::$record_count == 3): 
+											<option
+												value="3"
+												<?php //if (class_static_value::$record_count == 3):
 												?>
 													selected
-												<?php //endif 
+												<?php //endif
 												?>
 											>
 												3
 											</option>
-											<option 
-												value="5" 
-												<?php //if (class_static_value::$record_count == 5): 
+											<option
+												value="5"
+												<?php //if (class_static_value::$record_count == 5):
 												?>
 													selected
-												<?php //endif 
+												<?php //endif
 												?>
 											>
 												5
 											</option>
-											<option 
-												value="10" 
-												<?php //if (class_static_value::$record_count == 10): 
+											<option
+												value="10"
+												<?php //if (class_static_value::$record_count == 10):
 												?>
 													selected
-												<?php //endif 
+												<?php //endif
 												?>
 											>
 												10
 											</option>
-											<option 
-												value="20" 
-												<?php //if (class_static_value::$record_count == 20): 
+											<option
+												value="20"
+												<?php //if (class_static_value::$record_count == 20):
 												?>
 													selected
-												<?php //endif 
+												<?php //endif
 												?>
 											>
 												20
 											</option>
-											<option 
-												value="50" 
-												<?php //if (class_static_value::$record_count == 50): 
+											<option
+												value="50"
+												<?php //if (class_static_value::$record_count == 50):
 												?>
 													selected
-												<?php //endif 
+												<?php //endif
 												?>
 											>
 												50
 											</option>
-											<option 
-												value="100" 
-												<?php //if (class_static_value::$record_count == 100): 
+											<option
+												value="100"
+												<?php //if (class_static_value::$record_count == 100):
 												?>
 													selected
-												<?php //endif 
+												<?php //endif
 												?>
 											>
 												100
@@ -135,16 +135,16 @@
 									<div class="form-group form-group-md mx-sm-2 mb-2">
 										<label for="kata_kunci" class="control-label">Pencarian :&nbsp; </label>
 										<input type="text" class="form-control" name="kata_kunci" id="kata_kunci" placeholder="Kata Kunci Pencarian" onchange="search(
-												<?php echo $page; ?>, 
+												<?php echo $page; ?>,
 												<?php echo class_static_value::$record_count; ?>,
-												'<?php echo $_GET['content']; ?>', 
+												'<?php echo $_GET['content']; ?>',
 												$('input#kata_kunci').val()
 											);" />
 									</div>
 									<button class="btn btn-secondary mb-2" onclick="search(
-											<?php echo $page; ?>, 
+											<?php echo $page; ?>,
 											<?php echo class_static_value::$record_count; ?>,
-											'<?php echo $_GET['content']; ?>', 
+											'<?php echo $_GET['content']; ?>',
 											$('input#kata_kunci').val()
 										);">
 										Cari
@@ -178,7 +178,7 @@
 											<td><?= $data['tgl_transaksi'] ?></td>
 											<td><?= $data['nama_pelanggan'] ?></td>
 											<td><?= setBadges($data['diantarkan']) ?></td>
-											<td class="text-right"><?= format(getTotalHargaTransaksi($data['id_transaksi']), "currency") ?></td>
+											<td class="text-right"><?= format(getTotalHargaTransaksi($data['id_transaksi'], $data['jumlah_hari']), "currency") ?></td>
 											<td><?= setBadges($data['status_transaksi']) ?></td>
 											<td><?= showRating($data['rating'], 11) ?></td>
 											<td>

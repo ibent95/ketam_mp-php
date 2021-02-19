@@ -23,6 +23,7 @@
 			} else {
 				self::$URL_BASE			= "https://813e9feceaa8.ngrok.io/ketam_mp";
 				self::$HOSTNAME			= "https://813e9feceaa8.ngrok.io/ketam_mp";
+
 			}
 
 			define("record_count", self::$record_count);
